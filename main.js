@@ -183,6 +183,609 @@ function main(){
     gl_FragColor = vec4(vColor, 1.);
     }`;
 
+     // KEPALA
+    var sectorCount1 = 100;
+    var stackCount1 = 100;
+    var radius1 = 2;
+
+    var a1, b1, c1, xy1;
+    var sectorStep1 = 2 * Math.PI / sectorCount1;
+    var stackStep1 = Math.PI / stackCount1;
+    var sectorAngle1, stackAngle1;
+    var R_vertices1 = [];
+    for (var i = 0; i <= stackCount1; ++i) {
+        stackAngle1 = Math.PI / 2 - i * stackStep1;
+        xy1 = radius1 * Math.cos(stackAngle1);
+        c1 = radius1 * Math.sin(stackAngle1);
+        for (var j = 0; j <= sectorCount1; ++j) {
+            sectorAngle1 = j * sectorStep1;
+            a1 = xy1 * Math.cos(sectorAngle1);
+            b1 = xy1 * Math.sin(sectorAngle1);
+            R_vertices1.push(a1);
+            R_vertices1.push(b1);
+            R_vertices1.push(c1);
+            R_vertices1.push(1);
+            R_vertices1.push(1);
+            R_vertices1.push(1);
+        }
+    }
+    
+    var k1, k2;
+    var R_faces1 = [];
+    for (var i = 0; i < stackCount1; ++i) {
+        k1 = i * (sectorCount1 + 1);
+        k2 = k1 + sectorCount1 + 1;
+        for (var j = 0; j < sectorCount1; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                R_faces1.push(k1);
+                R_faces1.push(k2);
+                R_faces1.push(k1 + 1);
+            }
+            if (i != (stackCount1 - 1)) {
+                R_faces1.push(k1 + 1);
+                R_faces1.push(k2);
+                R_faces1.push(k2 + 1);
+            }
+        }
+    }
+
+    // HIDUNG
+    var sectorCount2 = 100;
+    var stackCount2 = 100;
+    var radius2 = 0.3;
+
+    var a2, b2, c2, xy2;
+    var sectorStep2 = 2 * Math.PI / sectorCount2;
+    var stackStep2 = Math.PI / stackCount2;
+    var sectorAngle2, stackAngle2;
+    var vertices2 = [];
+    for (var i = 0; i <= stackCount2; ++i) {
+        stackAngle2 = Math.PI / 2 - i * stackStep2;
+        xy2 = radius2 * Math.cos(stackAngle2);
+        c2 = radius2 * Math.sin(stackAngle2);
+        for (var j = 0; j <= sectorCount2; ++j) {
+            sectorAngle2 = j * sectorStep2;
+            a2 = xy2 * Math.cos(sectorAngle2);
+            b2 = xy2 * Math.sin(sectorAngle2);
+            vertices2.push(a2);
+            vertices2.push(b2);
+            vertices2.push(c2);
+            vertices2.push(0);
+            vertices2.push(0);
+            vertices2.push(0);
+        }
+    }
+    
+    var k1, k2;
+    var R_faces2 = [];
+    for (var i = 0; i < stackCount2; ++i) {
+        k1 = i * (sectorCount2 + 1);
+        k2 = k1 + sectorCount2 + 1;
+        for (var j = 0; j < sectorCount2; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                R_faces2.push(k1);
+                R_faces2.push(k2);
+                R_faces2.push(k1 + 1);
+            }
+            if (i != (stackCount2 - 1)) {
+                R_faces2.push(k1 + 1);
+                R_faces2.push(k2);
+                R_faces2.push(k2 + 1);
+            }
+        }
+    }
+
+    // MULUT
+    var sectorCount3 = 100;
+    var stackCount3 = 100;
+    var radius3 = 1.3;
+
+    var a3, b3, c3, xy3;
+    var sectorStep3 = 2 * Math.PI / sectorCount3;
+    var stackStep3 = Math.PI / stackCount3;
+    var sectorAngle3, stackAngle3;
+    var vertices3 = [];
+    for (var i = 0; i <= stackCount3; ++i) {
+        stackAngle3 = Math.PI / 2 - i * stackStep3;
+        xy3 = radius3 * Math.cos(stackAngle3);
+        c3 = radius3 * Math.sin(stackAngle3);
+        for (var j = 0; j <= sectorCount3/2; ++j) {
+            sectorAngle3 = j * sectorStep3;
+            a3 = xy3 * Math.cos(sectorAngle3);
+            b3 = xy3 * Math.sin(sectorAngle3);
+            vertices3.push(-a3);
+            vertices3.push(-b3);
+            vertices3.push(-c3);
+            vertices3.push(0.5);
+            vertices3.push(0.5);
+            vertices3.push(0.5);
+        }
+    }
+    
+    var k1, k2;
+    var faces3 = [];
+    for (var i = 0; i < stackCount3; ++i) {
+        k1 = i * (sectorCount3 + 1);
+        k2 = k1 + sectorCount3 + 1;
+        for (var j = 0; j < sectorCount3; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                faces3.push(k1);
+                faces3.push(k2);
+                faces3.push(k1 + 1);
+            }
+            if (i != (stackCount3 - 1)) {
+                faces3.push(k1 + 1);
+                faces3.push(k2);
+                faces3.push(k2 + 1);
+            }
+        }
+    }
+
+    var R_vertices4 = [];
+    for (var u = -Math.PI; u <= Math.PI; u+=Math.PI/30) {
+        for (var v = -Math.PI/2; v < Math.PI/2; v+=Math.PI/30) {
+            // Elliptic paraboloid
+            R_vertices4.push(1.5 * 0.5 * v * Math.cos(u));
+            R_vertices4.push(1.5 * 0.375 * v * Math.sin(u));
+            R_vertices4.push(Math.pow(v, 2));
+            
+            R_vertices4.push(0);
+			R_vertices4.push(0);
+			R_vertices4.push(0);
+        }
+    }
+
+    var R_faces4 = [];
+    for (var i = 0;i < R_vertices4.length/6; i++) {
+        R_faces4.push(0);  
+        R_faces4.push(i);  
+        R_faces4.push(i+1);  
+    }
+
+    // MATA
+    var sectorCount3 = 100;
+    var stackCount3 = 100;
+    var radius3 = 0.3;
+
+    var a3, b3, c3, xy3;
+    var sectorStep3 = 2 * Math.PI / sectorCount3;
+    var stackStep3 = Math.PI / stackCount3;
+    var sectorAngle3, stackAngle3;
+    var R_verticesMata1 = [];
+    for (var i = 0; i <= stackCount3; ++i) {
+        stackAngle3 = Math.PI / 2 - i * stackStep3;
+        xy3 = radius3 * Math.cos(stackAngle3);
+        c3 = radius3 * Math.sin(stackAngle3);
+        for (var j = 0; j <= sectorCount3; ++j) {
+            sectorAngle3 = j * sectorStep3;
+            a3 = xy3 * Math.cos(sectorAngle3);
+            b3 = xy3 * Math.sin(sectorAngle3);
+            R_verticesMata1.push(a3);
+            R_verticesMata1.push(b3);
+            R_verticesMata1.push(c3);
+            R_verticesMata1.push(0);
+            R_verticesMata1.push(0);
+            R_verticesMata1.push(0);
+        }
+    }
+    
+    var k1, k2;
+    var R_facesMata1 = [];
+    for (var i = 0; i < stackCount3; ++i) {
+        k1 = i * (sectorCount3 + 1);
+        k2 = k1 + sectorCount3 + 1;
+        for (var j = 0; j < sectorCount3; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                R_facesMata1.push(k1);
+                R_facesMata1.push(k2);
+                R_facesMata1.push(k1 + 1);
+            }
+            if (i != (stackCount3 - 1)) {
+                R_facesMata1.push(k1 + 1);
+                R_facesMata1.push(k2);
+                R_facesMata1.push(k2 + 1);
+            }
+        }
+    }
+    var sectorCount4 = 100;
+    var stackCount4 = 100;
+    var radius4 = 0.3;
+
+    var a4, b4, c4, xy4;
+    var sectorStep4 = 2 * Math.PI / sectorCount4;
+    var stackStep4 = Math.PI / stackCount4;
+    var sectorAngle4, stackAngle4;
+    var verticesMata2 = [];
+    for (var i = 0; i <= stackCount4; ++i) {
+        stackAngle4 = Math.PI / 2 - i * stackStep4;
+        xy4 = radius4 * Math.cos(stackAngle4);
+        c4 = radius4 * Math.sin(stackAngle4);
+        for (var j = 0; j <= sectorCount4; ++j) {
+            sectorAngle4 = j * sectorStep4;
+            a4 = xy4 * Math.cos(sectorAngle4);
+            b4 = xy4 * Math.sin(sectorAngle4);
+            verticesMata2.push(a4);
+            verticesMata2.push(b4);
+            verticesMata2.push(c4);
+            verticesMata2.push(0);
+            verticesMata2.push(0);
+            verticesMata2.push(0);
+        }
+    }
+
+    var k1, k2;
+    var facesMata2 = [];
+    for (var i = 0; i < stackCount4; ++i) {
+        k1 = i * (sectorCount4 + 1);
+        k2 = k1 + sectorCount4 + 1;
+        for (var j = 0; j < sectorCount4; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                facesMata2.push(k1);
+                facesMata2.push(k2);
+                facesMata2.push(k1 + 1);
+            }
+            if (i != (stackCount4 - 1)) {
+                facesMata2.push(k1 + 1);
+                facesMata2.push(k2);
+                facesMata2.push(k2 + 1);
+            }
+        }
+    }
+
+    //kalung
+    var sectorCount5 = 100;
+    var stackCount5 = 100;
+    var radius5 = 1.5;
+
+    var a5, b5, c5, xy5;
+    var sectorStep5 = 2 * Math.PI / sectorCount5;
+    var stackStep5 = Math.PI / stackCount5;
+    var sectorAngle5, stackAngle5;
+    var R_verticesKalung = [];
+    for (var i = 0; i <= stackCount5; ++i) {
+        stackAngle5 = Math.PI / 2 - i * stackStep5;
+        xy5 = radius5 * Math.cos(stackAngle5);
+        c5 = radius5 * Math.sin(stackAngle5);
+        for (var j = 0; j <= sectorCount5; ++j) {
+            sectorAngle5 = j * sectorStep5;
+            a5 =  xy5 * Math.cos(sectorAngle5);
+            b5 = 2* xy5 * Math.sin(sectorAngle5);
+            R_verticesKalung.push(a5);
+            R_verticesKalung.push(b5);
+            R_verticesKalung.push(c5);
+            R_verticesKalung.push(1);
+            R_verticesKalung.push(1);
+            R_verticesKalung.push(0);
+        }
+    }
+
+    var k1, k2;
+    var facesKalung = [];
+    for (var i = 0; i < stackCount5; ++i) {
+        k1 = i * (sectorCount5 + 1);
+        k2 = k1 + sectorCount5 + 1;
+        for (var j = 0; j < sectorCount5; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                facesKalung.push(k1);
+                facesKalung.push(k2);
+                facesKalung.push(k1 + 1);
+            }
+            if (i != (stackCount5 - 1)) {
+                facesKalung.push(k1 + 1);
+                facesKalung.push(k2);
+                facesKalung.push(k2 + 1);
+            }
+        }
+    }
+    var sectorCount6 = 100;
+    var stackCount6 = 100;
+    var radius6 = 2;
+
+    var a6, b6, c6, xy6;
+    var sectorStep6 = 2 * Math.PI / sectorCount6;
+    var stackStep6 = Math.PI / stackCount6;
+    var sectorAngle6, stackAngle6;
+    var R_verticesBadan = [];
+    for (var i = 0; i <= stackCount6; ++i) {
+        stackAngle6 = Math.PI / 2 - i * stackStep6;
+        xy6 = radius6 * Math.cos(stackAngle6);
+        c6 = radius6 * Math.sin(stackAngle6);
+        for (var j = 0; j <= sectorCount6; ++j) {
+            sectorAngle6 = j * sectorStep6;
+            a6 = xy6 * Math.cos(sectorAngle6);
+            b6 = xy6 * Math.sin(sectorAngle6);
+            R_verticesBadan.push(a6);
+            R_verticesBadan.push(b6);
+            R_verticesBadan.push(c6);
+            R_verticesBadan.push(1);
+            R_verticesBadan.push(1);
+            R_verticesBadan.push(1);
+        }
+    }
+
+    var k1, k2;
+    var R_facesBadan = [];
+    for (var i = 0; i < stackCount6; ++i) {
+        k1 = i * (sectorCount6 + 1);
+        k2 = k1 + sectorCount6 + 1;
+        for (var j = 0; j < sectorCount6; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                R_facesBadan.push(k1);
+                R_facesBadan.push(k2);
+                R_facesBadan.push(k1 + 1);
+            }
+            if (i != (stackCount6 - 1)) {
+                R_facesBadan.push(k1 + 1);
+                R_facesBadan.push(k2);
+                R_facesBadan.push(k2 + 1);
+            }
+        }
+    }
+    var R_vertices5 = [];
+    for (var u = -Math.PI; u <= Math.PI; u+=Math.PI/180) {
+        for (var v = -Math.PI/2; v < Math.PI/2; v+=Math.PI/180) {
+            // Elliptic paraboloid
+            R_vertices5.push(2 * Math.cos(v) * Math.cos(u));
+            R_vertices5.push(1.5 * Math.cos(v) * Math.sin(u));
+            R_vertices5.push(Math.sin(v));
+            
+            R_vertices5.push(1);
+			R_vertices5.push(1);
+			R_vertices5.push(1);
+        }
+    }
+
+    var R_faces5 = [];
+    for (var i = 0;i < R_vertices5.length/6; i++) {
+        R_faces5.push(0);  
+        R_faces5.push(i);  
+        R_faces5.push(i+1);  
+    }
+
+  //mulut condong kedepan
+    var vertices6 = [];
+    for (var u = -Math.PI; u <= Math.PI; u+=Math.PI/180) {
+        for (var v = -Math.PI/2; v < Math.PI/2; v+=Math.PI/180) {
+            // Elliptic paraboloid
+            vertices6.push(2 * Math.cos(v) * Math.cos(u));
+            vertices6.push(1.5 * Math.cos(v) * Math.sin(u));
+            vertices6.push(Math.sin(v));
+            
+            vertices6.push(1);
+			vertices6.push(1);
+			vertices6.push(1);
+        }
+    }
+
+    var faces6 = [];
+    for (var i = 0;i < vertices6.length/6; i++) {
+        faces6.push(0);  
+        faces6.push(i);  
+        faces6.push(i+1);  
+    }
+
+    var R_verticestelinga2 = [];
+    for (var u = -Math.PI; u <= Math.PI; u+=Math.PI/30) {
+        for (var v = -Math.PI/2; v < Math.PI/2; v+=Math.PI/30) {
+            // Elliptic paraboloid
+            R_verticestelinga2.push(1.5 * 0.5 * v * Math.cos(u));
+            R_verticestelinga2.push(1.5 * 0.375 * v * Math.sin(u));
+            R_verticestelinga2.push(Math.pow(v, 2));
+            
+            R_verticestelinga2.push(0);
+			R_verticestelinga2.push(0);
+			R_verticestelinga2.push(0);
+        }
+    }
+
+    var facestelinga2 = [];
+    for (var i = 0;i < R_verticestelinga2.length/6; i++) {
+        facestelinga2.push(0);  
+        facestelinga2.push(i);  
+        facestelinga2.push(i+1);  
+    }
+
+   
+
+    var R_facesBadan = [];
+    for (var i = 0;i < R_vertices5.length/6; i++) {
+        R_facesBadan.push(0);  
+        R_facesBadan.push(i);  
+        R_facesBadan.push(i+1);  
+    }
+
+    var sectorCount9 = 100;
+    var stackCount9 = 100;
+    var radius9 = 0.5;
+
+    var a9, b9, c9, xy9;
+    var sectorStep9 = 2 * Math.PI / sectorCount9;
+    var stackStep9 = Math.PI / stackCount9;
+    var sectorAngle9, stackAngle9;
+    var R_vertices9 = [];
+    for (var i = 0; i <= stackCount9; ++i) {
+        stackAngle9 = Math.PI / 2 - i * stackStep9;
+        xy9 = radius9 * Math.cos(stackAngle9);
+        c9 = radius9 * Math.sin(stackAngle9);
+        for (var j = 0; j <= sectorCount9; ++j) {
+            sectorAngle9 = j * sectorStep9;
+            a9 = xy9 * Math.cos(sectorAngle9);
+            b9 = 2.5 * xy9 * Math.sin(sectorAngle9);
+            R_vertices9.push(a9);
+            R_vertices9.push(b9);
+            R_vertices9.push(c9);
+            R_vertices9.push(1);
+            R_vertices9.push(1);
+            R_vertices9.push(1);
+        }
+    }
+    
+    var k1, k2;
+    var R_faces9 = [];
+    for (var i = 0; i < stackCount9; ++i) {
+        k1 = i * (sectorCount9 + 1);
+        k2 = k1 + sectorCount9 + 1;
+        for (var j = 0; j < sectorCount9; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                R_faces9.push(k1);
+                R_faces9.push(k2);
+                R_faces9.push(k1 + 1);
+            }
+            if (i != (stackCount9 - 1)) {
+                R_faces9.push(k1 + 1);
+                R_faces9.push(k2);
+                R_faces9.push(k2 + 1);
+            }
+        }
+    }
+
+    
+    
+    function deg_to_rad(deg){
+        return deg*(Math.PI / 180);
+    }
+    function getX(teta, r){
+        return r * Math.cos(teta);
+    }
+    function getY(teta, r){
+        return r * Math.sin(teta);
+    }
+
+    var R_vertices10 = [0,0,0,0,1,1]; //index 0
+    //lingkaran e
+    for (var i = 1; i <= 360; i++){
+        x = getX(deg_to_rad(i), 1) / 2;
+        y = getY(deg_to_rad(i), 1) / 2;
+        R_vertices10.push(x);
+        R_vertices10.push(y);
+        R_vertices10.push(0); //z
+        R_vertices10.push(0);
+        R_vertices10.push(1);
+        R_vertices10.push(1);
+    }; //index 1-360
+    
+    //tengah atas
+    R_vertices10.push(x);
+    R_vertices10.push(y);
+    R_vertices10.push(zTitikPuncak); //z
+    R_vertices10.push(1);
+    R_vertices10.push(1);
+    R_vertices10.push(1);
+    //index 361
+
+    var zTitikPuncak = 1.6;
+    //atap e
+    for (var i = 1; i <= 360; i++){
+        x = 0.8 * getX(deg_to_rad(i), 1) / 2;
+        y = getY(deg_to_rad(i), 1) / 2;
+        R_vertices10.push(x);
+        R_vertices10.push(y);
+        R_vertices10.push(zTitikPuncak); //z
+        R_vertices10.push(1);
+        R_vertices10.push(1);
+        R_vertices10.push(1);
+    };//index 362-721
+
+    var R_faces10 = []; //berlawanan jarum jam kalo bisa dari index 0 -> 1 -> 2
+    for (var i = 0; i <= 360; i++){
+        R_faces10.push(0);
+        R_faces10.push(i);
+        R_faces10.push(i+1);
+    }
+    R_faces10.push(0);
+    R_faces10.push(1);
+    R_faces10.push(360);
+    //tinggi 
+    for (var i = 1; i <= 360; i++){
+        R_faces10.push(i);
+        R_faces10.push(i+1);
+        R_faces10.push(i+361);
+        
+        R_faces10.push(i+1);
+        R_faces10.push(i+362);
+        R_faces10.push(i+361);
+    }
+    R_faces10.push(1);
+    R_faces10.push(360);
+    R_faces10.push(362);
+    
+    R_faces10.push(360);
+    R_faces10.push(362);
+    R_faces10.push(721);
+    for (var i = 0; i <= 360; i++){
+        R_faces10.push(0+362);
+        R_faces10.push(i+362);
+        R_faces10.push(i+363);
+    }
+
+    // TOPI
+    var R_vertices11 = [0,0,0,0,1,1]; //index 0
+    //lingkaran e
+    for (var i = 1; i <= 360; i++){
+        x = getX(deg_to_rad(i), 1) / 2;
+        y = getY(deg_to_rad(i), 1) / 2;
+        R_vertices11.push(x);
+        R_vertices11.push(y);
+        R_vertices11.push(0); //z
+        R_vertices11.push(0);
+        R_vertices11.push(0);
+        R_vertices11.push(0);
+    }; //index 1-360
+
+    //tengah atas
+    R_vertices11.push(x);
+    R_vertices11.push(y);
+    R_vertices11.push(zTitikPuncak); //z
+    R_vertices11.push(0);
+    R_vertices11.push(0);
+    R_vertices11.push(0);
+    //index 361
+
+    var zTitikPuncak = 1.6;
+    //atap e
+    for (var i = 1; i <= 360; i++){
+        // x = getX(deg_to_rad(i), 1) / 2;
+        // y = getY(deg_to_rad(i), 1) / 2;
+        R_vertices11.push(x);
+        R_vertices11.push(y);
+        R_vertices11.push(zTitikPuncak); //z
+        R_vertices11.push(0);
+        R_vertices11.push(0);
+        R_vertices11.push(0);
+    };//index 362-721
+
+    var R_faces11 = []; //berlawanan jarum jam kalo bisa dari index 0 -> 1 -> 2
+    for (var i = 0; i <= 360; i++){
+        R_faces11.push(0);
+        R_faces11.push(i);
+        R_faces11.push(i+1);
+    }
+    R_faces11.push(0);
+    R_faces11.push(1);
+    R_faces11.push(360);
+    //tinggi 
+    for (var i = 1; i <= 360; i++){
+        R_faces11.push(i);
+        R_faces11.push(i+1);
+        R_faces11.push(i+361);
+
+        R_faces11.push(i+1);
+        R_faces11.push(i+362);
+        R_faces11.push(i+361);
+    }
+    R_faces11.push(1);
+    R_faces11.push(360);
+    R_faces11.push(362);
+
+    R_faces11.push(360);
+    R_faces11.push(362);
+    R_faces11.push(721);
+    for (var i = 0; i <= 360; i++){
+        R_faces11.push(0+362);
+        R_faces11.push(i+362);
+        R_faces11.push(i+363);
+    }
+	
     // KEPALA
     var sectorCount1 = 100;
     var stackCount1 = 100;
@@ -1439,6 +2042,38 @@ function main(){
     A_object1.addChild(A_object15);
     A_object1.addChild(A_object16);
 
+    // OBJECT
+    var R_object1 = new myObject(R_vertices1, R_faces1, shader_vertex_source, shader_fragment_source);
+    var R_object2 = new myObject(vertices2, R_faces2, shader_vertex_source, shader_fragment_source);
+    var R_object4 = new myObject(R_vertices4, R_faces4, shader_vertex_source, shader_fragment_source);
+    var R_object5 = new myObject(R_vertices5, R_faces5, shader_vertex_source, shader_fragment_source);
+    var R_object6 = new myObject(R_vertices5, R_faces5, shader_vertex_source, shader_fragment_source);
+    var R_objecttelinga2 = new myObject(R_verticestelinga2, facestelinga2, shader_vertex_source, shader_fragment_source);
+    var R_objectMata1 = new myObject(R_verticesMata1, R_facesMata1, shader_vertex_source, shader_fragment_source);
+    var R_objectMata2 = new myObject(R_verticesMata1, R_facesMata1, shader_vertex_source, shader_fragment_source);
+    var R_objectBadan = new myObject(R_verticesBadan, R_facesBadan, shader_vertex_source, shader_fragment_source);
+    var R_objectKalung = new myObject(R_verticesKalung, facesKalung, shader_vertex_source, shader_fragment_source);
+    var R_objectTangan1 = new myObject(R_vertices9, R_faces9, shader_vertex_source, shader_fragment_source);
+    var R_objectTangan2 = new myObject(R_vertices9, R_faces9, shader_vertex_source, shader_fragment_source);
+    var R_objectKaki1 = new myObject(R_vertices10, R_faces10, shader_vertex_source, shader_fragment_source);
+    var R_objectKaki2 = new myObject(R_vertices10, R_faces10, shader_vertex_source, shader_fragment_source);
+    var R_objectKerucut = new myObject(R_vertices11 , R_faces11, shader_vertex_source, shader_fragment_source);
+
+    R_object1.addChild(R_object2);
+    R_object1.addChild(R_object4);
+    R_object1.addChild(R_object5);
+    R_object1.addChild(R_object6);
+    R_object1.addChild(R_objecttelinga2);
+    R_object1.addChild(R_objectMata1);
+    R_object1.addChild(R_objectMata2);
+    R_object1.addChild(R_objectBadan);
+    R_object1.addChild(R_objectKalung);
+    R_object1.addChild(R_objectTangan1);
+    R_object1.addChild(R_objectTangan2);
+    R_object1.addChild(R_objectKaki1);
+    R_object1.addChild(R_objectKaki2);
+    R_object1.addChild(R_objectKerucut);
+	
     //MATRIX
     var PROJMATRIX = LIBS.get_projection(100, CANVAS.width/CANVAS.height, 1, 100);
     var VIEWMATRIX = LIBS.get_I4();
@@ -1461,6 +2096,112 @@ function main(){
           THETA += dX, PHI += dY;
         }
 
+        R_object1.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_object1.MOVEMATRIX,R_object1.MOVEMATRIX,LIBS.degToRad(time * p));
+
+        R_object2.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_object2.MOVEMATRIX,R_object2.MOVEMATRIX,LIBS.degToRad(time * p));
+
+
+        //mata1
+        R_objectMata1.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_objectMata1.MOVEMATRIX,R_objectMata1.MOVEMATRIX,LIBS.degToRad(time * p));
+
+        // mata2 
+        R_objectMata2.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_objectMata2.MOVEMATRIX,R_objectMata2.MOVEMATRIX,LIBS.degToRad(time * p));
+
+        //object3.MOVEMATRIX = glMatrix.mat4.create();
+       // glMatrix.mat4.rotateY(object3.MOVEMATRIX,object3.MOVEMATRIX,LIBS.degToRad(time * p));
+        
+       // kalung
+       R_objectKalung.MOVEMATRIX = glMatrix.mat4.create();
+       glMatrix.mat4.rotateY(R_objectKalung.MOVEMATRIX,R_objectKalung.MOVEMATRIX,LIBS.degToRad(time * p));
+
+       // badan
+       R_objectBadan.MOVEMATRIX = glMatrix.mat4.create();
+       glMatrix.mat4.rotateY(R_objectBadan.MOVEMATRIX,R_objectBadan.MOVEMATRIX,LIBS.degToRad(time * p));
+
+
+        //telinga1
+        R_object4.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_object4.MOVEMATRIX,R_object4.MOVEMATRIX,LIBS.degToRad(time * p));
+        glMatrix.mat4.translate(R_object4.MOVEMATRIX,R_object4.MOVEMATRIX,[-2.0+q,2.0,0.2])
+        glMatrix.mat4.rotateX(R_object4.MOVEMATRIX,R_object4.MOVEMATRIX,LIBS.degToRad(80));
+        glMatrix.mat4.rotateY(R_object4.MOVEMATRIX,R_object4.MOVEMATRIX,LIBS.degToRad(40));
+        glMatrix.mat4.rotateZ(R_object4.MOVEMATRIX,R_object4.MOVEMATRIX,LIBS.degToRad(50));
+
+        //telinga 2
+        R_objecttelinga2.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_objecttelinga2.MOVEMATRIX,R_objecttelinga2.MOVEMATRIX,LIBS.degToRad(time * p));
+        glMatrix.mat4.translate(R_objecttelinga2.MOVEMATRIX,R_objecttelinga2.MOVEMATRIX,[2.0+q,2.0,0.2])
+        glMatrix.mat4.rotateX(R_objecttelinga2.MOVEMATRIX,R_objecttelinga2.MOVEMATRIX,LIBS.degToRad(80));
+        glMatrix.mat4.rotateY(R_objecttelinga2.MOVEMATRIX,R_objecttelinga2.MOVEMATRIX,LIBS.degToRad(-40));
+        glMatrix.mat4.rotateZ(R_objecttelinga2.MOVEMATRIX,R_objecttelinga2.MOVEMATRIX,LIBS.degToRad(50));
+        
+        R_object5.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,LIBS.degToRad(time * p));
+        glMatrix.mat4.translate(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,[-0.1+q,-0.2,0.7])
+        glMatrix.mat4.rotateX(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,LIBS.degToRad(50));
+        glMatrix.mat4.rotateZ(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,LIBS.degToRad(120));
+        glMatrix.mat4.rotateY(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,LIBS.degToRad(-50));
+
+
+        
+        R_object6.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,LIBS.degToRad(time * p));
+        glMatrix.mat4.translate(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,[0.1+q,-0.2,0.7])
+        glMatrix.mat4.rotateX(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,LIBS.degToRad(50));
+        glMatrix.mat4.rotateZ(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,LIBS.degToRad(50));
+        glMatrix.mat4.rotateY(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,LIBS.degToRad(-50));
+        
+        R_objectTangan1.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_objectTangan1.MOVEMATRIX,R_objectTangan1.MOVEMATRIX,LIBS.degToRad(time * p));
+        glMatrix.mat4.translate(R_objectTangan1.MOVEMATRIX,R_objectTangan1.MOVEMATRIX,[-1.6+q,-2.2,0.0])
+        glMatrix.mat4.rotateX(R_objectTangan1.MOVEMATRIX,R_objectTangan1.MOVEMATRIX,LIBS.degToRad(150));
+        glMatrix.mat4.rotateZ(R_objectTangan1.MOVEMATRIX,R_objectTangan1.MOVEMATRIX,LIBS.degToRad(40));
+        glMatrix.mat4.rotateY(R_objectTangan1.MOVEMATRIX,R_objectTangan1.MOVEMATRIX,LIBS.degToRad(0));
+
+        R_objectTangan2.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_objectTangan2.MOVEMATRIX,R_objectTangan2.MOVEMATRIX,LIBS.degToRad(time * p));
+        glMatrix.mat4.translate(R_objectTangan2.MOVEMATRIX,R_objectTangan2.MOVEMATRIX,[1.6+q,-2.2,0.0])
+        glMatrix.mat4.rotateX(R_objectTangan2.MOVEMATRIX,R_objectTangan2.MOVEMATRIX,LIBS.degToRad(150));
+        glMatrix.mat4.rotateZ(R_objectTangan2.MOVEMATRIX,R_objectTangan2.MOVEMATRIX,LIBS.degToRad(-40));
+        glMatrix.mat4.rotateY(R_objectTangan2.MOVEMATRIX,R_objectTangan2.MOVEMATRIX,LIBS.degToRad(0));
+
+        
+        R_objectKaki1.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_objectKaki1.MOVEMATRIX,R_objectKaki1.MOVEMATRIX,LIBS.degToRad(time * p));
+        glMatrix.mat4.translate(R_objectKaki1.MOVEMATRIX,R_objectKaki1.MOVEMATRIX,[-0.8+q,-4,0.0])
+        glMatrix.mat4.rotateX(R_objectKaki1.MOVEMATRIX,R_objectKaki1.MOVEMATRIX,LIBS.degToRad(90));
+        glMatrix.mat4.rotateZ(R_objectKaki1.MOVEMATRIX,R_objectKaki1.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateY(R_objectKaki1.MOVEMATRIX,R_objectKaki1.MOVEMATRIX,LIBS.degToRad(0));
+
+
+
+        R_objectKaki2.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_objectKaki2.MOVEMATRIX,R_objectKaki2.MOVEMATRIX,LIBS.degToRad(time * p));
+        glMatrix.mat4.translate(R_objectKaki2.MOVEMATRIX,R_objectKaki2.MOVEMATRIX,[0.85+q,-4,0.0])
+        glMatrix.mat4.rotateX(R_objectKaki2.MOVEMATRIX,R_objectKaki2.MOVEMATRIX,LIBS.degToRad(90));
+        glMatrix.mat4.rotateZ(R_objectKaki2.MOVEMATRIX,R_objectKaki2.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateY(R_objectKaki2.MOVEMATRIX,R_objectKaki2.MOVEMATRIX,LIBS.degToRad(0));
+    
+        R_objectKerucut.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(R_objectKerucut.MOVEMATRIX,R_objectKerucut.MOVEMATRIX,LIBS.degToRad(time * p));
+        glMatrix.mat4.translate(R_objectKerucut.MOVEMATRIX,R_objectKerucut.MOVEMATRIX,[0.0+q,-4,-1])
+        glMatrix.mat4.rotateX(R_objectKerucut.MOVEMATRIX,R_objectKerucut.MOVEMATRIX,LIBS.degToRad(120));
+        glMatrix.mat4.rotateZ(R_objectKerucut.MOVEMATRIX,R_objectKerucut.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateY(R_objectKerucut.MOVEMATRIX,R_objectKerucut.MOVEMATRIX,LIBS.degToRad(0));
+    
+        
+        glMatrix.mat4.translate(R_object1.MOVEMATRIX,R_object1.MOVEMATRIX,[0.0+q,0.0,0.0])
+        glMatrix.mat4.translate(R_object2.MOVEMATRIX,R_object2.MOVEMATRIX,[0.0+q,0.2,2.3])
+        glMatrix.mat4.translate(R_objectMata1.MOVEMATRIX,R_objectMata1.MOVEMATRIX,[-0.9+q,0.8,1.4])
+        glMatrix.mat4.translate(R_objectMata2.MOVEMATRIX,R_objectMata2.MOVEMATRIX,[0.9+q,0.8,1.4])
+        glMatrix.mat4.translate(R_objectKalung.MOVEMATRIX,R_objectKalung.MOVEMATRIX,[0+q,-0.9,0])
+        glMatrix.mat4.translate(R_objectBadan.MOVEMATRIX,R_objectBadan.MOVEMATRIX,[0+q,-3,0])
+        //glMatrix.mat4.translate(object3.MOVEMATRIX,object3.MOVEMATRIX,[0.0,-0.4,0.8])
+	    
 	// pala bawa
         Z_object1.MOVEMATRIX = glMatrix.mat4.create();
         glMatrix.mat4.rotateY(Z_object1.MOVEMATRIX,Z_object1.MOVEMATRIX,LIBS.degToRad(time * 0.05));
@@ -1722,6 +2463,24 @@ function main(){
 
         A_object1.draw();
 
+	R_object1.setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[0].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[1].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[2].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[3].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[4].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[5].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[6].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[7].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[8].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[9].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[10].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[11].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[12].setUniform4(PROJMATRIX,VIEWMATRIX);
+        R_object1.child[13].setUniform4(PROJMATRIX,VIEWMATRIX);
+        
+        R_object1.draw();
+	    
         GL.flush();
 
         window.requestAnimationFrame(animate);
