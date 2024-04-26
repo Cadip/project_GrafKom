@@ -2203,6 +2203,63 @@ function main(){
         0, 2, 3,
     ];
    
+
+    // rumah
+    
+    var object_vertex2 = [
+        // Apply scaling transformation to each vertex
+        -25, -15, -10,     1, 1, 0,
+         25, -15, -10,     1, 1, 0,
+         25,  15, -10,     1, 1, 0,
+        -25,  15, -10,     1, 1, 0,
+      
+        -25, -15,  10,     1, 0.5, 0,
+         25, -15,  10,     1, 0.5, 0,
+         25,  15,  10,     1, 0.5, 0,
+        -25,  15,  10,     1, 0.5, 0,
+      
+        -25, -15, -10,     0, 1, 1,
+        -25,  15, -10,     0, 1, 1,
+        -25,  15,  10,     0, 1, 1,
+        -25, -15,  10,     0, 1, 1,
+      
+         25, -15, -10,     1, 0, 0,
+         25,  15, -10,     1, 0, 0,
+         25,  15,  10,     1, 0, 0,
+         25, -15,  10,     1, 0, 0,
+      
+        -25, -15, -10,     1, 0, 1,
+        -25, -15,  10,     1, 0, 1,
+         25, -15,  10,     1, 0, 1,
+         25, -15, -10,     1, 0, 1,
+      
+        -25, 15, -10,     0, 1, 0,
+        -25, 15,  10,     0, 1, 0,
+         25, 15,  10,     0, 1, 0,
+         25, 15, -10,     0, 1, 0
+      ];
+      
+      var object_faces2 = [    
+        0, 1, 2,
+        0, 2, 3,
+    
+        4, 5, 6,
+        4, 6, 7,
+    
+        8, 9, 10,
+        8, 10, 11,
+    
+        12, 13, 14,
+        12, 14, 15,
+    
+        16, 17, 18,
+        16, 18, 19,
+    
+        20, 21, 22,
+        20, 22, 23];
+
+        
+        
     // OBJECT
     var Z_object1 = new myObject(Z_vertices1, Z_faces1, shader_vertex_source, shader_fragment_source);
     var Z_object2 = new myObject(Z_vertices2, Z_faces2, shader_vertex_source, shader_fragment_source);
@@ -2358,6 +2415,10 @@ function main(){
     //tanah
     var objectkotak = new myObject(object_vertex,object_faces,shader_vertex_source,shader_fragment_source);
     
+
+    //rumah
+
+    var objectrumah = new myObject(object_vertex2,object_faces2,shader_vertex_source,shader_fragment_source);
     object1.addChild(object2);
     object1.addChild(object3);
     object1.addChild(object4);
@@ -2933,6 +2994,12 @@ function main(){
         // glMatrix.mat4.rotateY(object20.MOVEMATRIX,object20.MOVEMATRIX,LIBS.degToRad(time * 0.05));
         glMatrix.mat4.translate(objectkotak.MOVEMATRIX,objectkotak.MOVEMATRIX,[0.0,90.0,0.0])
 
+
+        objectrumah.MOVEMATRIX = glMatrix.mat4.create();
+        // glMatrix.mat4.rotateY(object20.MOVEMATRIX,object20.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(objectrumah.MOVEMATRIX,objectrumah.MOVEMATRIX,[-15,-9,-30])
+
+
         GL.viewport(0, 0, CANVAS.width, CANVAS.height);
         GL.clear(GL.COLOR_BUFFER_BIT| GL.D_BUFFER_BIT);
 
@@ -3045,6 +3112,10 @@ function main(){
 
         objectkotak.draw();
         
+
+        objectrumah.setUniform4(PROJMATRIX,VIEWMATRIX);  
+        objectrumah.draw();
+       
 	    
         GL.flush();
 
