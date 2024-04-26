@@ -686,6 +686,724 @@ function main(){
         A_faces11.push(i+363);
     }
 
+    // KEPALA bawah
+    var sectorCount1 = 100;
+    var stackCount1 = 100;
+    var radius1 = 2;
+
+    var a1, b1, c1, xy1;
+    var sectorStep1 = 2 * Math.PI / sectorCount1;
+    var stackStep1 = Math.PI / stackCount1;
+    var sectorAngle1, stackAngle1;
+    var Z_vertices1 = [];
+    for (var i = 0; i <= stackCount1; ++i) {
+        stackAngle1 = Math.PI / 2 - i * stackStep1;
+        xy1 = radius1 * Math.cos(stackAngle1);
+        c1 = radius1 * Math.sin(stackAngle1);
+        for (var j = 0; j <= sectorCount1; ++j) {
+            sectorAngle1 = j * sectorStep1;
+            a1 = xy1 * Math.cos(sectorAngle1);
+            b1 = xy1 * Math.sin(sectorAngle1);
+            Z_vertices1.push(a1);
+            Z_vertices1.push(b1);
+            Z_vertices1.push(c1);
+            Z_vertices1.push(1);
+            Z_vertices1.push(0.9);
+            Z_vertices1.push(0.7);
+        }
+    }
+    
+    var k1, k2;
+    var Z_faces1 = [];
+    for (var i = 0; i < stackCount1; ++i) {
+        k1 = i * (sectorCount1 + 1);
+        k2 = k1 + sectorCount1 + 1;
+        for (var j = 0; j < sectorCount1; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                Z_faces1.push(k1);
+                Z_faces1.push(k2);
+                Z_faces1.push(k1 + 1);
+            }
+            if (i != (stackCount1 - 1)) {
+                Z_faces1.push(k1 + 1);
+                Z_faces1.push(k2);
+                Z_faces1.push(k2 + 1);
+            }
+        }
+    }
+
+    
+    // HIDUNG
+    var sectorCount2 = 100;
+    var stackCount2 = 100;
+    var radius2 = 0.3;
+
+    var a2, b2, c2, xy2;
+    var sectorStep2 = 2 * Math.PI / sectorCount2;
+    var stackStep2 = Math.PI / stackCount2;
+    var sectorAngle2, stackAngle2;
+    var Z_vertices2 = [];
+    for (var i = 0; i <= stackCount2; ++i) {
+        stackAngle2 = Math.PI / 2 - i * stackStep2;
+        xy2 = radius2 * Math.cos(stackAngle2);
+        c2 = radius2 * Math.sin(stackAngle2);
+        for (var j = 0; j <= sectorCount2; ++j) {
+            sectorAngle2 = j * sectorStep2;
+            a2 = xy2 * Math.cos(sectorAngle2);
+            b2 = xy2 * Math.sin(sectorAngle2);
+            Z_vertices2.push(a2);
+            Z_vertices2.push(b2);
+            Z_vertices2.push(c2);
+            Z_vertices2.push(0);
+            Z_vertices2.push(0);
+            Z_vertices2.push(0);
+        }
+    }
+    
+    var k1, k2;
+    var Z_faces2 = [];
+    for (var i = 0; i < stackCount2; ++i) {
+        k1 = i * (sectorCount2 + 1);
+        k2 = k1 + sectorCount2 + 1;
+        for (var j = 0; j < sectorCount2; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                Z_faces2.push(k1);
+                Z_faces2.push(k2);
+                Z_faces2.push(k1 + 1);
+            }
+            if (i != (stackCount2 - 1)) {
+                Z_faces2.push(k1 + 1);
+                Z_faces2.push(k2);
+                Z_faces2.push(k2 + 1);
+            }
+        }
+    }
+
+    // MULUT
+    var sectorCount3 = 100;
+    var stackCount3 = 100;
+    var radius3 = 1.3;
+
+    var a3, b3, c3, xy3;
+    var sectorStep3 = 2 * Math.PI / sectorCount3;
+    var stackStep3 = Math.PI / stackCount3;
+    var sectorAngle3, stackAngle3;
+    var Z_vertices3 = [];
+    for (var i = 0; i <= stackCount3; ++i) {
+        stackAngle3 = Math.PI / 2 - i * stackStep3;
+        xy3 = radius3 * Math.cos(stackAngle3);
+        c3 = radius3 * Math.sin(stackAngle3);
+        for (var j = 0; j <= sectorCount3/2; ++j) {
+            sectorAngle3 = j * sectorStep3;
+            a3 = xy3 * Math.cos(sectorAngle3);
+            b3 = xy3 * Math.sin(sectorAngle3);
+            Z_vertices3.push(-a3);
+            Z_vertices3.push(-b3);
+            Z_vertices3.push(-c3);
+            Z_vertices3.push(1);
+            Z_vertices3.push(0);
+            Z_vertices3.push(0);
+        }
+    }
+    
+    var k1, k2;
+    var Z_faces3 = [];
+    for (var i = 0; i < stackCount3; ++i) {
+        k1 = i * (sectorCount3 + 1);
+        k2 = k1 + sectorCount3 + 1;
+        for (var j = 0; j < sectorCount3; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                Z_faces3.push(k1);
+                Z_faces3.push(k2);
+                Z_faces3.push(k1 + 1);
+            }
+            if (i != (stackCount3 - 1)) {
+                Z_faces3.push(k1 + 1);
+                Z_faces3.push(k2);
+                Z_faces3.push(k2 + 1);
+            }
+        }
+    }
+
+    // kuping kiri
+    var Z_vertices4 = [];
+    for (var u = -Math.PI; u <= Math.PI; u+=Math.PI/30) {
+        for (var v = -Math.PI/2; v < Math.PI/2; v+=Math.PI/30) {
+            // Elliptic paraboloid
+            Z_vertices4.push(1.5 * 0.5 * v * Math.cos(u));
+            Z_vertices4.push(1.5 * 0.375 * v * Math.sin(u));
+            Z_vertices4.push(Math.pow(v, 2));
+            
+            Z_vertices4.push(1);
+            Z_vertices4.push(0.9);
+            Z_vertices4.push(0.7);
+        }
+    }
+
+    var Z_faces4 = [];
+    for (var i = 0;i < Z_vertices4.length/6; i++) {
+        Z_faces4.push(0);  
+        Z_faces4.push(i);  
+        Z_faces4.push(i+1);  
+    }
+
+    // mata kiri
+    var sectorCount5 = 100;
+    var stackCount5 = 100;
+    var radius5 = 0.1;
+
+    var a5, b5, c5, xy5;
+    var sectorStep5 = 2 * Math.PI / sectorCount5;
+    var stackStep5 = Math.PI / stackCount5;
+    var sectorAngle5, stackAngle5;
+    var Z_vertices5 = [];
+    for (var i = 0; i <= stackCount5; ++i) {
+        stackAngle5 = Math.PI / 2 - i * stackStep5;
+        xy5 = radius5 * Math.cos(stackAngle5);
+        c5 = radius5 * Math.sin(stackAngle5);
+        for (var j = 0; j <= sectorCount5; ++j) {
+            sectorAngle5 = j * sectorStep5;
+            a5 = xy5 * Math.cos(sectorAngle5);
+            b5 = xy5 * Math.sin(sectorAngle5);
+            Z_vertices5.push(a5);
+            Z_vertices5.push(b5);
+            Z_vertices5.push(c5);
+            Z_vertices5.push(0);
+            Z_vertices5.push(0);
+            Z_vertices5.push(0);
+        }
+    }
+    
+    var k1, k2;
+    var Z_faces5 = [];
+    for (var i = 0; i < stackCount5; ++i) {
+        k1 = i * (sectorCount5 + 1);
+        k2 = k1 + sectorCount5 + 1;
+        for (var j = 0; j < sectorCount5; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                Z_faces5.push(k1);
+                Z_faces5.push(k2);
+                Z_faces5.push(k1 + 1);
+            }
+            if (i != (stackCount5 - 1)) {
+                Z_faces5.push(k1 + 1);
+                Z_faces5.push(k2);
+                Z_faces5.push(k2 + 1);
+            }
+        }
+    }
+
+     // KEPALA atas
+     var sectorCount6 = 100;
+     var stackCount6 = 100;
+     var radius6 = 2;
+ 
+     var a6, b6, c6, xy6;
+     var sectorStep6 = 2 * Math.PI / sectorCount6;
+     var stackStep6 = Math.PI / stackCount6;
+     var sectorAngle6, stackAngle6;
+     var Z_vertices6 = [];
+     for (var i = 0; i <= stackCount6; ++i) {
+         stackAngle6 = Math.PI / 2 - i * stackStep6;
+         xy6 = radius6 * Math.cos(stackAngle6);
+         c6 = radius6 * Math.sin(stackAngle6);
+         for (var j = 0; j <= sectorCount6; ++j) {
+             sectorAngle6 = j * sectorStep6;
+             a6 = xy6 * Math.cos(sectorAngle6);
+             b6 = xy6 * Math.sin(sectorAngle6);
+             Z_vertices6.push(a6);
+             Z_vertices6.push(b6);
+             Z_vertices6.push(c6);
+             Z_vertices6.push(1);
+             Z_vertices6.push(0.9);
+             Z_vertices6.push(0.7)
+         }
+     }
+     
+    var k1, k2;
+    var Z_faces6 = [];
+    for (var i = 0; i < stackCount6; ++i) {
+        k1 = i * (sectorCount6 + 1);
+        k2 = k1 + sectorCount6 + 1;
+        for (var j = 0; j < sectorCount6; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                Z_faces6.push(k1);
+                Z_faces6.push(k2);
+                Z_faces6.push(k1 + 1);
+            }
+            if (i != (stackCount6 - 1)) {
+                Z_faces6.push(k1 + 1);
+                Z_faces6.push(k2);
+                Z_faces6.push(k2 + 1);
+            }
+        }
+    }
+
+    // kuping kanan
+    var Z_vertices7 = [];
+    for (var u = -Math.PI; u <= Math.PI; u+=Math.PI/30) {
+        for (var v = -Math.PI/2; v < Math.PI/2; v+=Math.PI/30) {
+            // Elliptic paraboloid
+            Z_vertices7.push(1.5 * 0.5 * v * Math.cos(u));
+            Z_vertices7.push(1.5 * 0.375 * v * Math.sin(u));
+            Z_vertices7.push(Math.pow(v, 2));
+            
+            Z_vertices7.push(1);
+            Z_vertices7.push(0.9);
+            Z_vertices7.push(0.7);
+        }
+    }
+
+    var Z_faces7 = [];
+    for (var i = 0;i < Z_vertices7.length/6; i++) {
+        Z_faces7.push(0);  
+        Z_faces7.push(i);  
+        Z_faces7.push(i+1);  
+    }
+
+     // mata kanan
+     var sectorCount8 = 100;
+     var stackCount8 = 100;
+     var radius8 = 0.1;
+ 
+     var a8, b8, c8, xy8;
+     var sectorStep8 = 2 * Math.PI / sectorCount8;
+     var stackStep8 = Math.PI / stackCount8;
+     var sectorAngle8, stackAngle8;
+     var Z_vertices8 = [];
+     for (var i = 0; i <= stackCount5; ++i) {
+         stackAngle8 = Math.PI / 2 - i * stackStep8;
+         xy8 = radius8 * Math.cos(stackAngle8);
+         c8 = radius8 * Math.sin(stackAngle8);
+         for (var j = 0; j <= sectorCount8; ++j) {
+             sectorAngle8 = j * sectorStep8;
+             a8 = xy8 * Math.cos(sectorAngle8);
+             b8 = xy8 * Math.sin(sectorAngle8);
+             Z_vertices8.push(a8);
+             Z_vertices8.push(b8);
+             Z_vertices8.push(c8);
+             Z_vertices8.push(0);
+             Z_vertices8.push(0);
+             Z_vertices8.push(0);
+         }
+     }
+     
+     var k1, k2;
+     var Z_faces8 = [];
+     for (var i = 0; i < stackCount8; ++i) {
+         k1 = i * (sectorCount8 + 1);
+         k2 = k1 + sectorCount8 + 1;
+         for (var j = 0; j < sectorCount8; ++j, ++k1, ++k2) {
+             if (i != 0) {
+                 Z_faces8.push(k1);
+                 Z_faces8.push(k2);
+                 Z_faces8.push(k1 + 1);
+             }
+             if (i != (stackCount6 - 1)) {
+                 Z_faces8.push(k1 + 1);
+                 Z_faces8.push(k2);
+                 Z_faces8.push(k2 + 1);
+             }
+         }
+     }
+
+     //kepala belakang
+    var sectorCount9 = 100;
+    var stackCount9 = 100;
+    var radius9 = 2;
+
+    var a9, b9, c9, xy9;
+    var sectorStep9 = 2 * Math.PI / sectorCount9;
+    var stackStep9 = Math.PI / stackCount9;
+    var sectorAngle9, stackAngle9;
+    var Z_vertices9 = [];
+    for (var i = 0; i <= stackCount9; ++i) {
+        stackAngle9 = Math.PI / 2 - i * stackStep9;
+        xy9 = radius9 * Math.cos(stackAngle9);
+        c9 = radius9 * Math.sin(stackAngle9);
+        for (var j = 0; j <= sectorCount9; ++j) {
+            sectorAngle9 = j * sectorStep9;
+            a9 = xy9 * Math.cos(sectorAngle9);
+            b9 = xy9 * Math.sin(sectorAngle9);
+            Z_vertices9.push(a9);
+            Z_vertices9.push(b9);
+            Z_vertices9.push(c9);
+            Z_vertices9.push(1);
+            Z_vertices9.push(0.9);
+            Z_vertices9.push(0.7);
+        }
+    }
+    
+    var k1, k2;
+    var Z_faces9 = [];
+    for (var i = 0; i < stackCount9; ++i) {
+        k1 = i * (sectorCount9 + 1);
+        k2 = k1 + sectorCount9 + 1;
+        for (var j = 0; j < sectorCount9; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                Z_faces9.push(k1);
+                Z_faces9.push(k2);
+                Z_faces9.push(k1 + 1);
+            }
+            if (i != (stackCount9 - 1)) {
+                Z_faces9.push(k1 + 1);
+                Z_faces9.push(k2);
+                Z_faces9.push(k2 + 1);
+            }
+        }
+    }
+
+    // badan
+    var sectorCount10 = 100;
+    var stackCount10 = 100;
+    var radius10 = 1.8;
+
+    var a10, b10, c10, xy10;
+    var sectorStep9 = 2 * Math.PI / sectorCount10;
+    var stackStep10 = Math.PI / stackCount10;
+    var sectorAngle10, stackAngle10;
+    var Z_vertices10 = [];
+    for (var i = 0; i <= stackCount10; ++i) {
+        stackAngle10 = Math.PI / 2 - i * stackStep10;
+        xy10 = radius10 * Math.cos(stackAngle10);
+        c10 = radius10 * Math.sin(stackAngle10);
+        for (var j = 0; j <= sectorCount10; ++j) {
+            sectorAngle10 = j * sectorStep9;
+            a10 = 1.0 * xy10 * Math.cos(sectorAngle10);
+            b10 = 1.3 * xy10 * Math.sin(sectorAngle10);
+            Z_vertices10.push(a10);
+            Z_vertices10.push(b10);
+            Z_vertices10.push(c10);
+            Z_vertices10.push(1);
+            Z_vertices10.push(0.9);
+            Z_vertices10.push(0.7);
+        }
+    }
+    
+    var k1, k2;
+    var Z_faces10 = [];
+    for (var i = 0; i < stackCount10; ++i) {
+        k1 = i * (sectorCount10 + 1);
+        k2 = k1 + sectorCount10 + 1;
+        for (var j = 0; j < sectorCount10; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                Z_faces10.push(k1);
+                Z_faces10.push(k2);
+                Z_faces10.push(k1 + 1);
+            }
+            if (i != (stackCount10 - 1)) {
+                Z_faces10.push(k1 + 1);
+                Z_faces10.push(k2);
+                Z_faces10.push(k2 + 1);
+            }
+        }
+    }
+
+    // TANGAN
+    var sectorCount11 = 100;
+    var stackCount11 = 100;
+    var radius11 = 0.6;
+
+    var a11, b11, c11, xy11;
+    var sectorStep11 = 2 * Math.PI / sectorCount11;
+    var stackStep11 = Math.PI / stackCount11;
+    var sectorAngle11, stackAngle11;
+    var Z_vertices11 = [];
+    for (var i = 0; i <= stackCount11; ++i) {
+        stackAngle11 = Math.PI / 2 - i * stackStep11;
+        xy11 = radius11 * Math.cos(stackAngle11);
+        c11 = radius11 * Math.sin(stackAngle11);
+        for (var j = 0; j <= sectorCount11; ++j) {
+            sectorAngle11 = j * sectorStep11;
+            a11 = xy11 * Math.cos(sectorAngle11);
+            b11 = 2.5 * xy11 * Math.sin(sectorAngle11);
+            Z_vertices11.push(a11);
+            Z_vertices11.push(b11);
+            Z_vertices11.push(c11);
+            Z_vertices11.push(1);
+            Z_vertices11.push(0.9);
+            Z_vertices11.push(0.7);
+        }
+    }
+    
+    var k1, k2;
+    var Z_faces11 = [];
+    for (var i = 0; i < stackCount11; ++i) {
+        k1 = i * (sectorCount11 + 1);
+        k2 = k1 + sectorCount11 + 1;
+        for (var j = 0; j < sectorCount11; ++j, ++k1, ++k2) {
+            if (i != 0) {
+                Z_faces11.push(k1);
+                Z_faces11.push(k2);
+                Z_faces11.push(k1 + 1);
+            }
+            if (i != (stackCount11 - 1)) {
+                Z_faces11.push(k1 + 1);
+                Z_faces11.push(k2);
+                Z_faces11.push(k2 + 1);
+            }
+        }
+    }
+
+    // KAKI
+    function deg_to_rad(deg){
+        return deg*(Math.PI / 180);
+    }
+    function getX(teta, r){
+        return r * Math.cos(teta);
+    }
+    function getY(teta, r){
+        return r * Math.sin(teta);
+    }
+
+    var Z_vertices12 = [0,0,0,0,1,1]; //index 0
+    //lingkaran e
+    for (var i = 1; i <= 360; i++){
+        x = getX(deg_to_rad(i), 1) / 2;
+        y = getY(deg_to_rad(i), 1) / 2;
+        Z_vertices12.push(x);
+        Z_vertices12.push(y);
+        Z_vertices12.push(0); //z
+        Z_vertices12.push(1);
+        Z_vertices12.push(0.9);
+        Z_vertices12.push(0.7);
+    }; //index 1-360
+    
+    //tengah atas
+    Z_vertices12.push(x);
+    Z_vertices12.push(y);
+    Z_vertices12.push(zTitikPuncak); //z
+    Z_vertices12.push(1);
+    Z_vertices12.push(0.9);
+    Z_vertices12.push(0.7);
+    //index 361
+
+    var zTitikPuncak = 1.6;
+    //atap e
+    for (var i = 1; i <= 360; i++){
+        x = 0.8 * getX(deg_to_rad(i), 1) / 2;
+        y = getY(deg_to_rad(i), 1) / 2;
+        Z_vertices12.push(x);
+        Z_vertices12.push(y);
+        Z_vertices12.push(zTitikPuncak); //z
+        Z_vertices12.push(1);
+        Z_vertices12.push(0.9);
+        Z_vertices12.push(0.7);
+    };//index 362-721
+
+    var Z_faces12 = []; //berlawanan jarum jam kalo bisa dari index 0 -> 1 -> 2
+    for (var i = 0; i <= 360; i++){
+        Z_faces12.push(0);
+        Z_faces12.push(i);
+        Z_faces12.push(i+1);
+    }
+    Z_faces12.push(0);
+    Z_faces12.push(1);
+    Z_faces12.push(360);
+    //tinggi 
+    for (var i = 1; i <= 360; i++){
+        Z_faces12.push(i);
+        Z_faces12.push(i+1);
+        Z_faces12.push(i+361);
+        
+        Z_faces12.push(i+1);
+        Z_faces12.push(i+362);
+        Z_faces12.push(i+361);
+    }
+    Z_faces12.push(1);
+    Z_faces12.push(360);
+    Z_faces12.push(362);
+    
+    Z_faces12.push(360);
+    Z_faces12.push(362);
+    Z_faces12.push(721);
+    for (var i = 0; i <= 360; i++){
+        Z_faces12.push(0+362);
+        Z_faces12.push(i+362);
+        Z_faces12.push(i+363);
+    }
+
+    // TOPI
+    var Z_vertices13 = [0,0,0,0,1,1]; //index 0
+    //lingkaran e
+    for (var i = 1; i <= 360; i++){
+        x = getX(deg_to_rad(i), 1) / 2;
+        y = getY(deg_to_rad(i), 1) / 2;
+        Z_vertices13.push(x);
+        Z_vertices13.push(y);
+        Z_vertices13.push(0); //z
+        Z_vertices13.push(1);
+        Z_vertices13.push(0);
+        Z_vertices13.push(1);
+    }; //index 1-360
+
+    //tengah atas
+    Z_vertices13.push(x);
+    Z_vertices13.push(y);
+    Z_vertices13.push(zTitikPuncak); //z
+    Z_vertices13.push(0);
+    Z_vertices13.push(0);
+    Z_vertices13.push(0);
+    //index 361
+
+    var zTitikPuncak = 1.6;
+    //atap e
+    for (var i = 1; i <= 360; i++){
+        // x = getX(deg_to_rad(i), 1) / 2;
+        // y = getY(deg_to_rad(i), 1) / 2;
+        Z_vertices13.push(x);
+        Z_vertices13.push(y);
+        Z_vertices13.push(zTitikPuncak); //z
+        Z_vertices13.push(1);
+        Z_vertices13.push(1);
+        Z_vertices13.push(0);
+    };//index 362-721
+
+    var Z_faces13 = []; //berlawanan jarum jam kalo bisa dari index 0 -> 1 -> 2
+    for (var i = 0; i <= 360; i++){
+        Z_faces13.push(0);
+        Z_faces13.push(i);
+        Z_faces13.push(i+1);
+    }
+    Z_faces13.push(0);
+    Z_faces13.push(1);
+    Z_faces13.push(360);
+    //tinggi 
+    for (var i = 1; i <= 360; i++){
+        Z_faces13.push(i);
+        Z_faces13.push(i+1);
+        Z_faces13.push(i+361);
+
+        Z_faces13.push(i+1);
+        Z_faces13.push(i+362);
+        Z_faces13.push(i+361);
+    }
+    Z_faces13.push(1);
+    Z_faces13.push(360);
+    Z_faces13.push(362);
+
+    Z_faces13.push(360);
+    Z_faces13.push(362);
+    Z_faces13.push(721);
+    for (var i = 0; i <= 360; i++){
+        Z_faces13.push(0+362);
+        Z_faces13.push(i+362);
+        Z_faces13.push(i+363);
+    }
+
+    // batang topi
+    function deg_to_rad(deg){
+        return deg*(Math.PI / 180);
+    }
+    function getX(teta, r){
+        return r * Math.cos(teta);
+    }
+    function getY(teta, r){
+        return r * Math.sin(teta);
+    }
+
+    var Z_vertices14 = [0,0,0,0,1,1]; //index 0
+    //lingkaran e
+    for (var i = 1; i <= 360; i++){
+        x = getX(deg_to_rad(i), 1) / 5;
+        y = getY(deg_to_rad(i), 1) / 5;
+        Z_vertices14.push(x);
+        Z_vertices14.push(y);
+        Z_vertices14.push(0); //z
+        Z_vertices14.push(1);
+        Z_vertices14.push(1);
+        Z_vertices14.push(1);
+    }; //index 1-360
+    
+    //tengah atas
+    Z_vertices14.push(x);
+    Z_vertices14.push(y);
+    Z_vertices14.push(zTitikPuncak); //z
+    Z_vertices14.push(1);
+    Z_vertices14.push(1);
+    Z_vertices14.push(1);
+    //index 361
+
+    var zTitikPuncak = 1.6;
+    //atap e
+    for (var i = 1; i <= 360; i++){
+        x = 0.8 * getX(deg_to_rad(i), 1) / 5;
+        y = getY(deg_to_rad(i), 1) / 5;
+        Z_vertices14.push(x);
+        Z_vertices14.push(y);
+        Z_vertices14.push(zTitikPuncak); //z
+        Z_vertices14.push(1);
+        Z_vertices14.push(1);
+        Z_vertices14.push(1);
+    };//index 362-721
+
+    var Z_faces14 = []; //berlawanan jarum jam kalo bisa dari index 0 -> 1 -> 2
+    for (var i = 0; i <= 360; i++){
+        Z_faces14.push(0);
+        Z_faces14.push(i);
+        Z_faces14.push(i+1);
+    }
+    Z_faces14.push(0);
+    Z_faces14.push(1);
+    Z_faces14.push(360);
+    //tinggi 
+    for (var i = 1; i <= 360; i++){
+        Z_faces14.push(i);
+        Z_faces14.push(i+1);
+        Z_faces14.push(i+361);
+        
+        Z_faces14.push(i+1);
+        Z_faces14.push(i+362);
+        Z_faces14.push(i+361);
+    }
+    Z_faces14.push(1);
+    Z_faces14.push(360);
+    Z_faces14.push(362);
+    
+    Z_faces14.push(360);
+    Z_faces14.push(362);
+    Z_faces14.push(721);
+    for (var i = 0; i <= 360; i++){
+        Z_faces14.push(0+362);
+        Z_faces14.push(i+362);
+        Z_faces14.push(i+363);
+    }
+   
+    // OBJECT
+    var Z_object1 = new myObject(Z_vertices1, Z_faces1, shader_vertex_source, shader_fragment_source);
+    var Z_object2 = new myObject(Z_vertices2, Z_faces2, shader_vertex_source, shader_fragment_source);
+    var Z_object3 = new myObject(Z_vertices3, Z_faces3, shader_vertex_source, shader_fragment_source);
+    var Z_object4 = new myObject(Z_vertices4, Z_faces4, shader_vertex_source, shader_fragment_source);
+    var Z_object5 = new myObject(Z_vertices5, Z_faces5, shader_vertex_source, shader_fragment_source);
+    var Z_object6 = new myObject(Z_vertices6, Z_faces6, shader_vertex_source, shader_fragment_source);
+    var Z_object7 = new myObject(Z_vertices7, Z_faces7, shader_vertex_source, shader_fragment_source);
+    var Z_object8 = new myObject(Z_vertices8, Z_faces8, shader_vertex_source, shader_fragment_source);
+    var Z_object9 = new myObject(Z_vertices9, Z_faces9, shader_vertex_source, shader_fragment_source);
+    var Z_object10 = new myObject(Z_vertices10, Z_faces10, shader_vertex_source, shader_fragment_source);
+    var Z_object11 = new myObject(Z_vertices11, Z_faces11, shader_vertex_source, shader_fragment_source);
+    var Z_object12 = new myObject(Z_vertices11, Z_faces11, shader_vertex_source, shader_fragment_source);
+    var Z_object13 = new myObject(Z_vertices12, Z_faces12, shader_vertex_source, shader_fragment_source);
+    var Z_object14 = new myObject(Z_vertices12, Z_faces12, shader_vertex_source, shader_fragment_source);
+    var Z_object15 = new myObject(Z_vertices13, Z_faces13, shader_vertex_source, shader_fragment_source);
+    var Z_object16 = new myObject(Z_vertices14, Z_faces14, shader_vertex_source, shader_fragment_source);
+
+    Z_object1.addChild(Z_object2);
+    Z_object1.addChild(Z_object3);
+    Z_object1.addChild(Z_object4);
+    Z_object1.addChild(Z_object5);
+    Z_object1.addChild(Z_object6);
+    Z_object1.addChild(Z_object7);
+    Z_object1.addChild(Z_object8);
+    Z_object1.addChild(Z_object9);
+    Z_object1.addChild(Z_object10);
+    Z_object1.addChild(Z_object11);
+    Z_object1.addChild(Z_object12);
+    Z_object1.addChild(Z_object13);
+    Z_object1.addChild(Z_object14);
+    Z_object1.addChild(Z_object15);
+    Z_object1.addChild(Z_object16);
+
+
 
     // OBJECT
     var A_object1 = new myObject(A_vertices1, A_faces1, shader_vertex_source, shader_fragment_source); //KEPALA
@@ -742,6 +1460,113 @@ function main(){
           dX *= AMORTIZATION, dY *= AMORTIZATION;
           THETA += dX, PHI += dY;
         }
+
+	// pala bawa
+        Z_object1.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object1.MOVEMATRIX,Z_object1.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+
+        // hidung
+        Z_object2.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object2.MOVEMATRIX,Z_object2.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+
+        // mulut
+        Z_object3.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object3.MOVEMATRIX,Z_object3.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(Z_object3.MOVEMATRIX,Z_object3.MOVEMATRIX,[0.0,0.0,-0.2])
+
+        // kuping kiri
+        Z_object4.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object4.MOVEMATRIX,Z_object4.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(Z_object4.MOVEMATRIX,Z_object4.MOVEMATRIX,[6.0,-0.6,0.5])
+        glMatrix.mat4.rotateX(Z_object4.MOVEMATRIX,Z_object4.MOVEMATRIX,LIBS.degToRad(90));
+        glMatrix.mat4.rotateY(Z_object4.MOVEMATRIX,Z_object4.MOVEMATRIX,LIBS.degToRad(137));
+        glMatrix.mat4.rotateZ(Z_object4.MOVEMATRIX,Z_object4.MOVEMATRIX,LIBS.degToRad(10));
+        
+        // mata kiri
+        Z_object5.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object5.MOVEMATRIX,Z_object5.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+
+        // pala ats
+        Z_object6.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object6.MOVEMATRIX,Z_object6.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+
+        //kuping kanan
+        Z_object7.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object7.MOVEMATRIX,Z_object7.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(Z_object7.MOVEMATRIX,Z_object7.MOVEMATRIX,[10.0,-0.6,0.5])
+        glMatrix.mat4.rotateX(Z_object7.MOVEMATRIX,Z_object7.MOVEMATRIX,LIBS.degToRad(90));
+        glMatrix.mat4.rotateY(Z_object7.MOVEMATRIX,Z_object7.MOVEMATRIX,LIBS.degToRad(-139));
+        glMatrix.mat4.rotateZ(Z_object7.MOVEMATRIX,Z_object7.MOVEMATRIX,LIBS.degToRad(10));
+
+        // mata kanan
+        Z_object8.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object8.MOVEMATRIX,Z_object8.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+
+        // pala blkng
+        Z_object9.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object9.MOVEMATRIX,Z_object9.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+
+        // badan
+        Z_object10.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object10.MOVEMATRIX,Z_object10.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+
+        // tangan kanan
+        Z_object11.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object11.MOVEMATRIX,Z_object11.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(Z_object11.MOVEMATRIX,Z_object11.MOVEMATRIX,[6.6,-3.0,0.0])
+        glMatrix.mat4.rotateX(Z_object11.MOVEMATRIX,Z_object11.MOVEMATRIX,LIBS.degToRad(150));
+        glMatrix.mat4.rotateZ(Z_object11.MOVEMATRIX,Z_object11.MOVEMATRIX,LIBS.degToRad(40));
+        glMatrix.mat4.rotateY(Z_object11.MOVEMATRIX,Z_object11.MOVEMATRIX,LIBS.degToRad(0));
+
+        // tangan kiri
+        Z_object12.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object12.MOVEMATRIX,Z_object12.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(Z_object12.MOVEMATRIX,Z_object12.MOVEMATRIX,[9.4,-3.0,0.0])
+        glMatrix.mat4.rotateX(Z_object12.MOVEMATRIX,Z_object12.MOVEMATRIX,LIBS.degToRad(150));
+        glMatrix.mat4.rotateZ(Z_object12.MOVEMATRIX,Z_object12.MOVEMATRIX,LIBS.degToRad(-49));
+        glMatrix.mat4.rotateY(Z_object12.MOVEMATRIX,Z_object12.MOVEMATRIX,LIBS.degToRad(0));
+
+        // KAKI KIRI
+        Z_object13.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object13.MOVEMATRIX,Z_object13.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(Z_object13.MOVEMATRIX,Z_object13.MOVEMATRIX,[7.5,-4.7,0.0])
+        glMatrix.mat4.rotateX(Z_object13.MOVEMATRIX,Z_object13.MOVEMATRIX,LIBS.degToRad(90));
+        glMatrix.mat4.rotateZ(Z_object13.MOVEMATRIX,Z_object13.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateY(Z_object13.MOVEMATRIX,Z_object13.MOVEMATRIX,LIBS.degToRad(0));
+
+        // KAKI KANAN
+        Z_object14.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object14.MOVEMATRIX,Z_object14.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(Z_object14.MOVEMATRIX,Z_object14.MOVEMATRIX,[8.85,-4.7,0.0])
+        glMatrix.mat4.rotateX(Z_object14.MOVEMATRIX,Z_object14.MOVEMATRIX,LIBS.degToRad(90));
+        glMatrix.mat4.rotateZ(Z_object14.MOVEMATRIX,Z_object14.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateY(Z_object14.MOVEMATRIX,Z_object14.MOVEMATRIX,LIBS.degToRad(0));
+
+        // topi
+        Z_object15.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object15.MOVEMATRIX,Z_object15.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(Z_object15.MOVEMATRIX,Z_object15.MOVEMATRIX,[11.0,-3.0,0.0])
+        glMatrix.mat4.rotateX(Z_object15.MOVEMATRIX,Z_object15.MOVEMATRIX,LIBS.degToRad(-100));
+        glMatrix.mat4.rotateZ(Z_object15.MOVEMATRIX,Z_object15.MOVEMATRIX,LIBS.degToRad(-30));
+        glMatrix.mat4.rotateY(Z_object15.MOVEMATRIX,Z_object15.MOVEMATRIX,LIBS.degToRad(20));
+
+        // batang topi
+        Z_object16.MOVEMATRIX = glMatrix.mat4.create();
+        glMatrix.mat4.rotateY(Z_object16.MOVEMATRIX,Z_object16.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(Z_object16.MOVEMATRIX,Z_object16.MOVEMATRIX,[10.0,-4.0,0.0])
+        glMatrix.mat4.rotateX(Z_object16.MOVEMATRIX,Z_object16.MOVEMATRIX,LIBS.degToRad(-60));
+        glMatrix.mat4.rotateZ(Z_object16.MOVEMATRIX,Z_object16.MOVEMATRIX,LIBS.degToRad(30));
+        glMatrix.mat4.rotateY(Z_object16.MOVEMATRIX,Z_object16.MOVEMATRIX,LIBS.degToRad(50));
+
+
+        glMatrix.mat4.translate(Z_object1.MOVEMATRIX,Z_object1.MOVEMATRIX,[8.0,0.0,0.0])
+        glMatrix.mat4.translate(Z_object2.MOVEMATRIX,Z_object2.MOVEMATRIX,[8.0,0.2,2.0])
+        glMatrix.mat4.translate(Z_object3.MOVEMATRIX,Z_object3.MOVEMATRIX,[8.0,-0.4,0.8])
+        glMatrix.mat4.translate(Z_object5.MOVEMATRIX,Z_object5.MOVEMATRIX,[7.6,1.5,1.4])
+        glMatrix.mat4.translate(Z_object6.MOVEMATRIX,Z_object6.MOVEMATRIX,[8.0,0.9,-0.5])
+        glMatrix.mat4.translate(Z_object8.MOVEMATRIX,Z_object8.MOVEMATRIX,[8.4,1.5,1.4])
+        glMatrix.mat4.translate(Z_object9.MOVEMATRIX,Z_object9.MOVEMATRIX,[8.0,0.0,-0.5])
+        glMatrix.mat4.translate(Z_object10.MOVEMATRIX,Z_object10.MOVEMATRIX,[8.0,-3.7,0.0])
 
         // KEPALA
         A_object1.MOVEMATRIX = glMatrix.mat4.create();
@@ -857,6 +1682,26 @@ function main(){
 
         GL.viewport(0, 0, CANVAS.width, CANVAS.height);
         GL.clear(GL.COLOR_BUFFER_BIT| GL.D_BUFFER_BIT);
+
+	 Z_object1.setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[0].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[1].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[2].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[3].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[4].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[5].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[6].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[7].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[8].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[9].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[10].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[11].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[12].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[13].setUniform4(PROJMATRIX,VIEWMATRIX);
+        Z_object1.child[14].setUniform4(PROJMATRIX,VIEWMATRIX);
+        
+        Z_object1.draw();
+
         
         A_object1.setUniform4(PROJMATRIX,VIEWMATRIX);
         A_object1.child[0].setUniform4(PROJMATRIX,VIEWMATRIX);
