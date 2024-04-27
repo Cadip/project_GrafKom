@@ -2221,7 +2221,7 @@ function main(){
         -25, -15, -10,     0, 1, 1,
         -25,  15, -10,     0, 1, 1,
         -25,  15,  10,     0, 1, 1,
-        -25, -15,  10,     0, 1, 1,
+        -25, -15,  10,     1, 1, 1,
       
          25, -15, -10,     1, 0, 0,
          25,  15, -10,     1, 0, 0,
@@ -2261,9 +2261,9 @@ function main(){
         20, 22, 23];
     var object_vertex3 = [
         
-        -50, 0, 0,     0, 0, 1,
-        33, 0, 0,     0, 0, 1,
-        0, 7, 0,     0, 0, 1,
+        -33, 0, 0,    1, 0, 0,
+        33, 0, 0,     1, 0, 0,
+        0, 15, 0,     1, 0, 0,
       
         
         ];
@@ -3055,15 +3055,15 @@ function main(){
 
         objectrumah.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object20.MOVEMATRIX,object20.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(objectrumah.MOVEMATRIX,objectrumah.MOVEMATRIX,[-15,-9,-30])
+        glMatrix.mat4.translate(objectrumah.MOVEMATRIX,objectrumah.MOVEMATRIX,[0,-9,-30])
 
         objectatap.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object20.MOVEMATRIX,object20.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(objectatap.MOVEMATRIX,objectatap.MOVEMATRIX,[-15,7,-27])
+        glMatrix.mat4.translate(objectatap.MOVEMATRIX,objectatap.MOVEMATRIX,[0,7,-27])
 
         objectpintu.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object20.MOVEMATRIX,object20.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(objectpintu.MOVEMATRIX,objectpintu.MOVEMATRIX,[-23,-2,-13.0])
+        glMatrix.mat4.translate(objectpintu.MOVEMATRIX,objectpintu.MOVEMATRIX,[4,-2,-13.0])
 
         GL.viewport(0, 0, CANVAS.width, CANVAS.height);
         GL.clear(GL.COLOR_BUFFER_BIT| GL.D_BUFFER_BIT);
