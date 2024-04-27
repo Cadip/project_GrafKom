@@ -2239,7 +2239,9 @@ function main(){
          25, 15, -10,     0, 1, 0
       ];
       
-      var object_faces2 = [    
+
+      // atap (hanya triangle 2d)
+      var object_faces2 = [
         0, 1, 2,
         0, 2, 3,
     
@@ -2257,8 +2259,32 @@ function main(){
     
         20, 21, 22,
         20, 22, 23];
-
+    var object_vertex3 = [
         
+        -50, 0, 0,     0, 0, 1,
+        33, 0, 0,     0, 0, 1,
+        0, 7, 0,     0, 0, 1,
+      
+        
+        ];
+    var object_faces3 = [
+        0, 1, 2,
+        
+    ];
+    
+    // pintru
+    var object_vertex4 = [
+        
+        -10, -8, -7,     1, 1, 0,
+         1, -7, -2.5,     1, 1, 0,
+         1,  5, -2.5,     1, 1, 0,
+        -10,  5, -7,     1, 1, 0,
+    ];
+    var object_faces4 = [    
+        0, 1, 2,
+        0, 2, 3,
+    ];
+
         
     // OBJECT
     var Z_object1 = new myObject(Z_vertices1, Z_faces1, shader_vertex_source, shader_fragment_source);
@@ -2419,6 +2445,11 @@ function main(){
     //rumah
 
     var objectrumah = new myObject(object_vertex2,object_faces2,shader_vertex_source,shader_fragment_source);
+    //atap
+    var objectatap = new myObject(object_vertex3,object_faces3,shader_vertex_source,shader_fragment_source);
+    //pintu
+    var objectpintu = new myObject(object_vertex4,object_faces4,shader_vertex_source,shader_fragment_source);
+
     object1.addChild(object2);
     object1.addChild(object3);
     object1.addChild(object4);
@@ -2999,6 +3030,13 @@ function main(){
         // glMatrix.mat4.rotateY(object20.MOVEMATRIX,object20.MOVEMATRIX,LIBS.degToRad(time * 0.05));
         glMatrix.mat4.translate(objectrumah.MOVEMATRIX,objectrumah.MOVEMATRIX,[-15,-9,-30])
 
+        objectatap.MOVEMATRIX = glMatrix.mat4.create();
+        // glMatrix.mat4.rotateY(object20.MOVEMATRIX,object20.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(objectatap.MOVEMATRIX,objectatap.MOVEMATRIX,[-15,7,-27])
+
+        objectpintu.MOVEMATRIX = glMatrix.mat4.create();
+        // glMatrix.mat4.rotateY(object20.MOVEMATRIX,object20.MOVEMATRIX,LIBS.degToRad(time * 0.05));
+        glMatrix.mat4.translate(objectpintu.MOVEMATRIX,objectpintu.MOVEMATRIX,[-23,-2,-13.0])
 
         GL.viewport(0, 0, CANVAS.width, CANVAS.height);
         GL.clear(GL.COLOR_BUFFER_BIT| GL.D_BUFFER_BIT);
@@ -3116,7 +3154,12 @@ function main(){
         objectrumah.setUniform4(PROJMATRIX,VIEWMATRIX);  
         objectrumah.draw();
        
+        objectatap.setUniform4(PROJMATRIX,VIEWMATRIX);  
+        objectatap.draw();
 	    
+        objectpintu.setUniform4(PROJMATRIX,VIEWMATRIX);  
+        objectpintu.draw();
+
         GL.flush();
 
         window.requestAnimationFrame(animate);
