@@ -131,10 +131,6 @@ function main(){
     var Zpostion = [0,2,1.1,0.1,0.1,0.1,0.1,0.7,0.7,0,0,0,0,0.3,0.3,0.95];
     var Xpostion = [8,8,8,6,7.6,8,10,8.4,8,8,6.6,9.4,7.7,8.85,8];
 
-    var putar = true;
-    var speedPutar = 0.05;
-    var Xmatahari = [0,15];
-	
     var x_prev, y_prev;
 
     var mouseDown = function(e) {
@@ -2197,7 +2193,6 @@ function main(){
     
     // pintru
     var object_vertex4 = [
-        
         -10, -8, -7,     1, 1, 0,
          1, -6.7, -2.5,     1, 1, 0,
          1,  4.6, -2.5,     1, 1, 0,
@@ -2305,7 +2300,6 @@ function main(){
     R_object1.addChild(R_objectKaki1);
     R_object1.addChild(R_objectKaki2);
     R_object1.addChild(R_objectKerucut);
-
 
     //matahari
     var objectMatahari = new myObject(vertices1 , faces1, shader_vertex_source, shader_fragment_source);
@@ -2423,6 +2417,10 @@ function main(){
     GL.clearDepth(1.0);
     var time_prev = 0;
 
+    var putar = true;
+    var speedPutar = 0.05;
+    var Xmatahari = [0,15];
+
     var animate = function(time) {
         var dt = (time-time_prev);
         if (!drag) {
@@ -2436,7 +2434,6 @@ function main(){
 
         R_object2.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(R_object2.MOVEMATRIX,R_object2.MOVEMATRIX,LIBS.degToRad(time * p));
-
 
         //mata1
         R_objectMata1.MOVEMATRIX = glMatrix.mat4.create();
@@ -2604,7 +2601,6 @@ function main(){
         // glMatrix.mat4.rotateY(Z_object15.MOVEMATRIX,Z_object15.MOVEMATRIX,LIBS.degToRad(time * 0.05));
         glMatrix.mat4.translate(Z_object15.MOVEMATRIX,Z_object15.MOVEMATRIX,[8.0,2.5,0.0])
 
-       
 
         // KEPALA
         A_object1.MOVEMATRIX = glMatrix.mat4.create();
@@ -2687,8 +2683,7 @@ function main(){
         glMatrix.mat4.translate(A_object16.MOVEMATRIX,A_object16.MOVEMATRIX,[0.0,-1.9,0.95])
 
         objectMatahari.MOVEMATRIX = glMatrix.mat4.create();
-        // glMatrix.mat4.rotateY(objectMatahari.MOVEMATRIX,objectMatahari.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(objectMatahari.MOVEMATRIX,objectMatahari.MOVEMATRIX,[0.0,15.0,-2.0])
+        glMatrix.mat4.translate(objectMatahari.MOVEMATRIX,objectMatahari.MOVEMATRIX,[0.0,0.0,-2.0])
 
         object1.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object1.MOVEMATRIX,object1.MOVEMATRIX,LIBS.degToRad(time * 0.05));
@@ -2973,12 +2968,12 @@ function main(){
             glMatrix.mat4.rotateX(Z_object12.MOVEMATRIX,Z_object12.MOVEMATRIX,LIBS.degToRad(time * 0.5));
             glMatrix.mat4.rotateY(Z_object13.MOVEMATRIX,Z_object13.MOVEMATRIX,LIBS.degToRad(time * 0.5));
             glMatrix.mat4.rotateY(Z_object14.MOVEMATRIX,Z_object14.MOVEMATRIX,LIBS.degToRad(time * 0.5));
-        if (Xpostion[0] <= -3) {
+            if (Xpostion[0] <= -3) {
             walk1 = true;
              }   
         }
 
-	if(putar == true){
+        if(putar == true){
             if (Xmatahari[0] <= 0) {
                 glMatrix.mat4.translate(objectMatahari.MOVEMATRIX,objectMatahari.MOVEMATRIX,[(Xmatahari[0]-=speedPutar),(Xmatahari[1]-=0.005),0.0])
             }else{
@@ -2992,7 +2987,7 @@ function main(){
             Xmatahari[0] = 40;
             
             putar = true; 
-        }       
+        }        
 
         //kuping kiri
         glMatrix.mat4.rotateX(Z_object4.MOVEMATRIX,Z_object4.MOVEMATRIX,LIBS.degToRad(90));
