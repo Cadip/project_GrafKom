@@ -131,6 +131,10 @@ function main(){
     var Zpostion = [0,2,1.1,0.1,0.1,0.1,0.1,0.7,0.7,0,0,0,0,0.3,0.3,0.95];
     var Xpostion = [8,8,8,6,7.6,8,10,8.4,8,8,6.6,9.4,7.7,8.85,8];
 
+    var putar = true;
+    var speedPutar = 0.05;
+    var Xmatahari = [0,15];
+	
     var x_prev, y_prev;
 
     var mouseDown = function(e) {
@@ -2973,6 +2977,22 @@ function main(){
             walk1 = true;
              }   
         }
+
+	if(putar == true){
+            if (Xmatahari[0] <= 0) {
+                glMatrix.mat4.translate(objectMatahari.MOVEMATRIX,objectMatahari.MOVEMATRIX,[(Xmatahari[0]-=speedPutar),(Xmatahari[1]-=0.005),0.0])
+            }else{
+                glMatrix.mat4.translate(objectMatahari.MOVEMATRIX,objectMatahari.MOVEMATRIX,[(Xmatahari[0]-=speedPutar),(Xmatahari[1]+=0.005),0.0])
+            }
+            
+            if(Xmatahari[0] <= -40){
+                putar = false;
+            }
+        }else{
+            Xmatahari[0] = 40;
+            
+            putar = true; 
+        }       
 
         //kuping kiri
         glMatrix.mat4.rotateX(Z_object4.MOVEMATRIX,Z_object4.MOVEMATRIX,LIBS.degToRad(90));
