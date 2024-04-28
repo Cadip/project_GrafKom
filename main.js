@@ -2204,23 +2204,6 @@ function main(){
         0, 2, 3,
     ];
 
-    //curve 
-    // var curve = [-1, -4 , 0.9 , -0.44 , 0.1 , -0]
-    // var yAwal = 0.1;
-
-    // for (let index = 0; index < 6; index++){
-    //     var vertex_curve = generateBSpline(curve,100,2,0, yAwal, 1.2);
-    //     var faces_curve = [];
-    //     for (let index = 0; index < vertex_curve.length/6 ; index++){
-    //         faces_curve.push(index);
-            
-
-    //     }
-    //     var apa_ini = new myObject(vertex_curve,faces_curve,shader_vertex_source,shader_fragment_source);
-    //     yAwal += 0.003;
-    //     apa_ini.push(apa_ini);
-    // }
-
     // OBJECT
     var Z_object1 = new myObject(Z_vertices1, Z_faces1, shader_vertex_source, shader_fragment_source);
     var Z_object2 = new myObject(Z_vertices2, Z_faces2, shader_vertex_source, shader_fragment_source);
