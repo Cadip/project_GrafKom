@@ -1,4 +1,3 @@
-
 var GL;
 
 class myObject {
@@ -125,6 +124,9 @@ function main(){
     var dX = 0, dY = 0;
     var drag = false;
 
+    var walk = true;
+    var speed = 0.03;
+    var Zpostion = [0,2,1.1,0.1,0.1,0.1,0.1,0.7,0.7,0,0,0,0,0.3,0.3,0.95];
 
     var x_prev, y_prev;
 
@@ -2188,24 +2190,20 @@ function main(){
              }
          }
      }
-
-     
-     // tanah
+ 
+    // tanah
     var object_vertex = [
         -100, -100, -100,     0, 1, 0,
         -100, -100,  100,     0, 1, 0,
         100, -100,  100,     0, 1, 0,
         100, -100, -100,     0, 1, 0,
-      ];
-
-      var object_faces = [    
+    ];
+    var object_faces = [    
         0, 1, 2,
         0, 2, 3,
     ];
    
-
-    // rumah
-    
+    // rumah 
     var object_vertex2 = [
         // Apply scaling transformation to each vertex
         -25, -15, -10,     1, 1, 0,
@@ -2239,7 +2237,6 @@ function main(){
          25, 15, -10,     0, 1, 0
       ];
       
-
       // atap (hanya triangle 2d)
       var object_faces2 = [
         0, 1, 2,
@@ -2258,18 +2255,15 @@ function main(){
         16, 18, 19,
     
         20, 21, 22,
-        20, 22, 23];
+        20, 22, 23
+    ];
     var object_vertex3 = [
-        
         -33, 0, 0,    1, 0, 0,
         33, 0, 0,     1, 0, 0,
-        0, 15, 0,     1, 0, 0,
-      
-        
-        ];
+        0, 15, 0,     1, 0, 0,  
+    ];
     var object_faces3 = [
         0, 1, 2,
-        
     ];
     
     // pintru
@@ -2284,11 +2278,6 @@ function main(){
         0, 1, 2,
         0, 2, 3,
     ];
-
-
-
-
-
 
     //curve 
     // var curve = [-1, -4 , 0.9 , -0.44 , 0.1 , -0]
@@ -2306,12 +2295,6 @@ function main(){
     //     yAwal += 0.003;
     //     apa_ini.push(apa_ini);
     // }
-        
-
-
-
-
-
 
     // OBJECT
     var Z_object1 = new myObject(Z_vertices1, Z_faces1, shader_vertex_source, shader_fragment_source);
@@ -2346,8 +2329,6 @@ function main(){
     Z_object1.addChild(Z_object14);
     Z_object1.addChild(Z_object15);
     Z_object1.addChild(Z_object16);
-
-
 
     // OBJECT
     var A_object1 = new myObject(A_vertices1, A_faces1, shader_vertex_source, shader_fragment_source); //KEPALA
@@ -2464,10 +2445,8 @@ function main(){
     var object41 = new myObject(vertices4, faces4, shader_vertex_source, shader_fragment_source);
     var object42 = new myObject(vertices4, faces4, shader_vertex_source, shader_fragment_source);
 
-
     //tanah
     var objectkotak = new myObject(object_vertex,object_faces,shader_vertex_source,shader_fragment_source);
-    
 
     //rumah
 
@@ -2519,7 +2498,6 @@ function main(){
     object1.addChild(object41);
     object1.addChild(object42);
 	
-	
     //MATRIX
     var PROJMATRIX = LIBS.get_projection(100, CANVAS.width/CANVAS.height, 1, 100);
     var VIEWMATRIX = LIBS.get_I4();
@@ -2542,7 +2520,6 @@ function main(){
           THETA += dX, PHI += dY;
         }
 
-    
         var p = 0.05;
         R_object1.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(R_object1.MOVEMATRIX,R_object1.MOVEMATRIX,LIBS.degToRad(time * p));
@@ -2566,7 +2543,6 @@ function main(){
        // badan
        R_objectBadan.MOVEMATRIX = glMatrix.mat4.create();
     //    glMatrix.mat4.rotateY(R_objectBadan.MOVEMATRIX,R_objectBadan.MOVEMATRIX,LIBS.degToRad(time * p));
-
 
         var q = -8;
         //telinga1
@@ -2592,8 +2568,6 @@ function main(){
         glMatrix.mat4.rotateZ(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,LIBS.degToRad(120));
         glMatrix.mat4.rotateY(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,LIBS.degToRad(-50));
 
-
-        
         R_object6.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,LIBS.degToRad(time * p));
         glMatrix.mat4.translate(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,[0.1+q,-0.2,0.7])
@@ -2623,8 +2597,6 @@ function main(){
         glMatrix.mat4.rotateZ(R_objectKaki1.MOVEMATRIX,R_objectKaki1.MOVEMATRIX,LIBS.degToRad(0));
         glMatrix.mat4.rotateY(R_objectKaki1.MOVEMATRIX,R_objectKaki1.MOVEMATRIX,LIBS.degToRad(0));
 
-
-
         R_objectKaki2.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(R_objectKaki2.MOVEMATRIX,R_objectKaki2.MOVEMATRIX,LIBS.degToRad(time * p));
         glMatrix.mat4.translate(R_objectKaki2.MOVEMATRIX,R_objectKaki2.MOVEMATRIX,[0.85+q,-4,0.0])
@@ -2638,8 +2610,7 @@ function main(){
         glMatrix.mat4.rotateX(R_objectKerucut.MOVEMATRIX,R_objectKerucut.MOVEMATRIX,LIBS.degToRad(120));
         glMatrix.mat4.rotateZ(R_objectKerucut.MOVEMATRIX,R_objectKerucut.MOVEMATRIX,LIBS.degToRad(0));
         glMatrix.mat4.rotateY(R_objectKerucut.MOVEMATRIX,R_objectKerucut.MOVEMATRIX,LIBS.degToRad(0));
-    
-        
+     
         glMatrix.mat4.translate(R_object1.MOVEMATRIX,R_object1.MOVEMATRIX,[0.0+q,0.0,0.0])
         glMatrix.mat4.translate(R_object2.MOVEMATRIX,R_object2.MOVEMATRIX,[0.0+q,0.2,2.3])
         glMatrix.mat4.translate(R_objectMata1.MOVEMATRIX,R_objectMata1.MOVEMATRIX,[-0.9+q,0.8,1.4])
@@ -2745,7 +2716,6 @@ function main(){
         glMatrix.mat4.rotateZ(Z_object16.MOVEMATRIX,Z_object16.MOVEMATRIX,LIBS.degToRad(30));
         glMatrix.mat4.rotateY(Z_object16.MOVEMATRIX,Z_object16.MOVEMATRIX,LIBS.degToRad(50));
 
-
         glMatrix.mat4.translate(Z_object1.MOVEMATRIX,Z_object1.MOVEMATRIX,[8.0,0.0,0.0])
         glMatrix.mat4.translate(Z_object2.MOVEMATRIX,Z_object2.MOVEMATRIX,[8.0,0.2,2.0])
         glMatrix.mat4.translate(Z_object3.MOVEMATRIX,Z_object3.MOVEMATRIX,[8.0,-0.4,0.8])
@@ -2768,57 +2738,42 @@ function main(){
         // MULUT
         A_object3.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object3.MOVEMATRIX,A_object3.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(A_object3.MOVEMATRIX,A_object3.MOVEMATRIX,[0.0,-0.4,0.8])
+        glMatrix.mat4.translate(A_object3.MOVEMATRIX,A_object3.MOVEMATRIX,[0.0,-0.4,1.1])
 
         // KUPING KIRI
         A_object4.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object4.MOVEMATRIX,A_object4.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(A_object4.MOVEMATRIX,A_object4.MOVEMATRIX,[-2.0,2.0,0.2])
-        glMatrix.mat4.rotateX(A_object4.MOVEMATRIX,A_object4.MOVEMATRIX,LIBS.degToRad(80));
-        glMatrix.mat4.rotateY(A_object4.MOVEMATRIX,A_object4.MOVEMATRIX,LIBS.degToRad(40));
-        glMatrix.mat4.rotateZ(A_object4.MOVEMATRIX,A_object4.MOVEMATRIX,LIBS.degToRad(50));
+        glMatrix.mat4.translate(A_object4.MOVEMATRIX,A_object4.MOVEMATRIX,[-2.0,2.1,0.2])
         
         // MATA KIRI
         A_object5.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object5.MOVEMATRIX,A_object5.MOVEMATRIX,LIBS.degToRad(time * 0.05));
         glMatrix.mat4.translate(A_object5.MOVEMATRIX,A_object5.MOVEMATRIX,[-0.2,-0.0,0.3])
-        glMatrix.mat4.rotateX(A_object5.MOVEMATRIX,A_object5.MOVEMATRIX,LIBS.degToRad(70));
-        glMatrix.mat4.rotateZ(A_object5.MOVEMATRIX,A_object5.MOVEMATRIX,LIBS.degToRad(130));
-        glMatrix.mat4.rotateY(A_object5.MOVEMATRIX,A_object5.MOVEMATRIX,LIBS.degToRad(30));
         
         // MATA KANAN
         A_object6.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object6.MOVEMATRIX,A_object6.MOVEMATRIX,LIBS.degToRad(time * 0.05));
         glMatrix.mat4.translate(A_object6.MOVEMATRIX,A_object6.MOVEMATRIX,[0.2,-0.05,0.3])
-        glMatrix.mat4.rotateX(A_object6.MOVEMATRIX,A_object6.MOVEMATRIX,LIBS.degToRad(70));
-        glMatrix.mat4.rotateZ(A_object6.MOVEMATRIX,A_object6.MOVEMATRIX,LIBS.degToRad(-130));
-        glMatrix.mat4.rotateY(A_object6.MOVEMATRIX,A_object6.MOVEMATRIX,LIBS.degToRad(-30));
 
         // KUPING KANAN
         A_object7.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object7.MOVEMATRIX,A_object7.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(A_object7.MOVEMATRIX,A_object7.MOVEMATRIX,[2.0,2.0,0.2])
-        glMatrix.mat4.rotateX(A_object7.MOVEMATRIX,A_object7.MOVEMATRIX,LIBS.degToRad(80));
-        glMatrix.mat4.rotateY(A_object7.MOVEMATRIX,A_object7.MOVEMATRIX,LIBS.degToRad(-40));
-        glMatrix.mat4.rotateZ(A_object7.MOVEMATRIX,A_object7.MOVEMATRIX,LIBS.degToRad(50));
+        glMatrix.mat4.translate(A_object7.MOVEMATRIX,A_object7.MOVEMATRIX,[2.0,2.1,0.2])
         
         // BOLA MATA KIRI
         A_object8.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object8.MOVEMATRIX,A_object8.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(A_object8.MOVEMATRIX,A_object8.MOVEMATRIX,[-0.8,1.45,1.3])
+        glMatrix.mat4.translate(A_object8.MOVEMATRIX,A_object8.MOVEMATRIX,[-0.8,1.45,1.5])
 
         // BOLA MATA KANAN
         A_object9.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object9.MOVEMATRIX,A_object9.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(A_object9.MOVEMATRIX,A_object9.MOVEMATRIX,[0.8,1.4,1.3])
+        glMatrix.mat4.translate(A_object9.MOVEMATRIX,A_object9.MOVEMATRIX,[0.8,1.4,1.5])
 
         // LEHER
         A_object10.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object10.MOVEMATRIX,A_object10.MOVEMATRIX,LIBS.degToRad(time * 0.05));
         glMatrix.mat4.translate(A_object10.MOVEMATRIX,A_object10.MOVEMATRIX,[0.0,-1.3,0.0])
-        glMatrix.mat4.rotateX(A_object10.MOVEMATRIX,A_object10.MOVEMATRIX,LIBS.degToRad(0));
-        glMatrix.mat4.rotateY(A_object10.MOVEMATRIX,A_object10.MOVEMATRIX,LIBS.degToRad(0));
-        glMatrix.mat4.rotateZ(A_object10.MOVEMATRIX,A_object10.MOVEMATRIX,LIBS.degToRad(90));
 
         // BADAN
         A_object11.MOVEMATRIX = glMatrix.mat4.create();
@@ -2828,42 +2783,27 @@ function main(){
         // TANGAN KIRI
         A_object12.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object12.MOVEMATRIX,A_object12.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(A_object12.MOVEMATRIX,A_object12.MOVEMATRIX,[-1.4,-3.0,0.0])
-        glMatrix.mat4.rotateX(A_object12.MOVEMATRIX,A_object12.MOVEMATRIX,LIBS.degToRad(150));
-        glMatrix.mat4.rotateZ(A_object12.MOVEMATRIX,A_object12.MOVEMATRIX,LIBS.degToRad(40));
-        glMatrix.mat4.rotateY(A_object12.MOVEMATRIX,A_object12.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.translate(A_object12.MOVEMATRIX,A_object12.MOVEMATRIX,[-1.4,-2.3,0.0])
 
         // TANGAN KANAN
         A_object13.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object13.MOVEMATRIX,A_object13.MOVEMATRIX,LIBS.degToRad(time * 0.05));
         glMatrix.mat4.translate(A_object13.MOVEMATRIX,A_object13.MOVEMATRIX,[1.4,-3.0,0.0])
-        glMatrix.mat4.rotateX(A_object13.MOVEMATRIX,A_object13.MOVEMATRIX,LIBS.degToRad(0));
-        glMatrix.mat4.rotateZ(A_object13.MOVEMATRIX,A_object13.MOVEMATRIX,LIBS.degToRad(40));
-        glMatrix.mat4.rotateY(A_object13.MOVEMATRIX,A_object13.MOVEMATRIX,LIBS.degToRad(0));
 
         // KAKI KIRI
         A_object14.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,[-0.85,-4.7,0.0])
-        glMatrix.mat4.rotateX(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,LIBS.degToRad(60));
-        glMatrix.mat4.rotateZ(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,LIBS.degToRad(0));
-        glMatrix.mat4.rotateY(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.translate(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,[-0.75,-4.7,0.2])
 
         // KAKI KANAN
         A_object15.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,[0.85,-4.7,0.0])
-        glMatrix.mat4.rotateX(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,LIBS.degToRad(120));
-        glMatrix.mat4.rotateZ(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,LIBS.degToRad(0));
-        glMatrix.mat4.rotateY(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.translate(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,[0.55,-4.7,0.2])
 
         // KALUNG
         A_object16.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(A_object16.MOVEMATRIX,A_object16.MOVEMATRIX,LIBS.degToRad(time * 0.05));
         glMatrix.mat4.translate(A_object16.MOVEMATRIX,A_object16.MOVEMATRIX,[0.0,-1.9,0.95])
-        glMatrix.mat4.rotateX(A_object16.MOVEMATRIX,A_object16.MOVEMATRIX,LIBS.degToRad(0));
-        glMatrix.mat4.rotateZ(A_object16.MOVEMATRIX,A_object16.MOVEMATRIX,LIBS.degToRad(0));
-        glMatrix.mat4.rotateY(A_object16.MOVEMATRIX,A_object16.MOVEMATRIX,LIBS.degToRad(0));
 
         objectMatahari.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(objectMatahari.MOVEMATRIX,objectMatahari.MOVEMATRIX,LIBS.degToRad(time * 0.05));
@@ -3044,7 +2984,105 @@ function main(){
         // glMatrix.mat4.rotateY(object42.MOVEMATRIX,object42.MOVEMATRIX,LIBS.degToRad(time * 0.05));
         glMatrix.mat4.translate(object42.MOVEMATRIX,object42.MOVEMATRIX,[-27.0,3.0,0.0])
 
-    
+        // ANIMASI
+        if (walk == true) {
+            glMatrix.mat4.translate(A_object1.MOVEMATRIX,A_object1.MOVEMATRIX,[0.0,0.0,(Zpostion[0]+=speed)])
+            glMatrix.mat4.translate(A_object2.MOVEMATRIX,A_object2.MOVEMATRIX,[0.0,0.0,(Zpostion[1]+=speed)])
+            glMatrix.mat4.translate(A_object3.MOVEMATRIX,A_object3.MOVEMATRIX,[0.0,0.0,(Zpostion[2]+=speed)])
+
+            glMatrix.mat4.translate(A_object4.MOVEMATRIX,A_object4.MOVEMATRIX,[0.0,0.0,(Zpostion[3]+=speed)])
+            glMatrix.mat4.translate(A_object5.MOVEMATRIX,A_object5.MOVEMATRIX,[0.0,0.0,(Zpostion[4]+=speed)])
+            glMatrix.mat4.translate(A_object6.MOVEMATRIX,A_object6.MOVEMATRIX,[0.0,0.0,(Zpostion[5]+=speed)])
+            glMatrix.mat4.translate(A_object7.MOVEMATRIX,A_object7.MOVEMATRIX,[0.0,0.0,(Zpostion[6]+=speed)])
+
+            glMatrix.mat4.translate(A_object8.MOVEMATRIX,A_object8.MOVEMATRIX,[0.0,0.0,(Zpostion[7]+=speed)])
+            glMatrix.mat4.translate(A_object9.MOVEMATRIX,A_object9.MOVEMATRIX,[0.0,0.0,(Zpostion[8]+=speed)])
+            glMatrix.mat4.translate(A_object10.MOVEMATRIX,A_object10.MOVEMATRIX,[0.0,0.0,(Zpostion[9]+=speed)])
+            glMatrix.mat4.translate(A_object11.MOVEMATRIX,A_object11.MOVEMATRIX,[0.0,0.0,(Zpostion[10]+=speed)])
+            glMatrix.mat4.translate(A_object12.MOVEMATRIX,A_object12.MOVEMATRIX,[0.0,0.0,(Zpostion[11]+=speed)])
+            glMatrix.mat4.translate(A_object13.MOVEMATRIX,A_object13.MOVEMATRIX,[0.0,0.0,(Zpostion[12]+=speed)])
+
+            glMatrix.mat4.translate(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,[0.0,0.0,(Zpostion[13]+=speed)])
+            glMatrix.mat4.translate(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,[0.0,0.0,(Zpostion[14]+=speed)])
+            glMatrix.mat4.translate(A_object16.MOVEMATRIX,A_object16.MOVEMATRIX,[0.0,0.0,(Zpostion[15]+=speed)])
+            
+            glMatrix.mat4.rotateX(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,LIBS.degToRad(time * 0.3));
+            glMatrix.mat4.rotateX(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,LIBS.degToRad(time * 0.3));
+            if (Zpostion[0] >= 5) {
+                walk = false;
+            }   
+        }else{
+            glMatrix.mat4.translate(A_object1.MOVEMATRIX,A_object1.MOVEMATRIX,[0.0,0.0,(Zpostion[0]-=speed)])
+            glMatrix.mat4.translate(A_object2.MOVEMATRIX,A_object2.MOVEMATRIX,[0.0,0.0,(Zpostion[1]-=speed)])
+            glMatrix.mat4.translate(A_object3.MOVEMATRIX,A_object3.MOVEMATRIX,[0.0,0.0,(Zpostion[2]-=speed)])
+
+            glMatrix.mat4.translate(A_object4.MOVEMATRIX,A_object4.MOVEMATRIX,[0.0,0.0,(Zpostion[3]-=speed)])
+            glMatrix.mat4.translate(A_object5.MOVEMATRIX,A_object5.MOVEMATRIX,[0.0,0.0,(Zpostion[4]-=speed)])
+            glMatrix.mat4.translate(A_object6.MOVEMATRIX,A_object6.MOVEMATRIX,[0.0,0.0,(Zpostion[5]-=speed)])
+            glMatrix.mat4.translate(A_object7.MOVEMATRIX,A_object7.MOVEMATRIX,[0.0,0.0,(Zpostion[6]-=speed)])
+
+            glMatrix.mat4.translate(A_object8.MOVEMATRIX,A_object8.MOVEMATRIX,[0.0,0.0,(Zpostion[7]-=speed)])
+            glMatrix.mat4.translate(A_object9.MOVEMATRIX,A_object9.MOVEMATRIX,[0.0,0.0,(Zpostion[8]-=speed)])
+            glMatrix.mat4.translate(A_object10.MOVEMATRIX,A_object10.MOVEMATRIX,[0.0,0.0,(Zpostion[9]-=speed)])
+            glMatrix.mat4.translate(A_object11.MOVEMATRIX,A_object11.MOVEMATRIX,[0.0,0.0,(Zpostion[10]-=speed)])
+            glMatrix.mat4.translate(A_object12.MOVEMATRIX,A_object12.MOVEMATRIX,[0.0,0.0,(Zpostion[11]-=speed)])
+            glMatrix.mat4.translate(A_object13.MOVEMATRIX,A_object13.MOVEMATRIX,[0.0,0.0,(Zpostion[12]-=speed)])
+
+            glMatrix.mat4.translate(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,[0.0,0.0,(Zpostion[13]-=speed)])
+            glMatrix.mat4.translate(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,[0.0,0.0,(Zpostion[14]-=speed)])
+            glMatrix.mat4.translate(A_object16.MOVEMATRIX,A_object16.MOVEMATRIX,[0.0,0.0,(Zpostion[15]-=speed)])
+
+            glMatrix.mat4.rotateX(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,LIBS.degToRad(time * 0.3));
+            glMatrix.mat4.rotateX(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,LIBS.degToRad(time * 0.3));
+            if (Zpostion[0] <= -4) {
+                walk = true;
+            }
+        }
+
+        // KUPING KIRI
+        glMatrix.mat4.rotateX(A_object4.MOVEMATRIX,A_object4.MOVEMATRIX,LIBS.degToRad(80));
+        glMatrix.mat4.rotateY(A_object4.MOVEMATRIX,A_object4.MOVEMATRIX,LIBS.degToRad(40));
+        glMatrix.mat4.rotateZ(A_object4.MOVEMATRIX,A_object4.MOVEMATRIX,LIBS.degToRad(50));
+
+        // MATA KIRI
+        glMatrix.mat4.rotateX(A_object5.MOVEMATRIX,A_object5.MOVEMATRIX,LIBS.degToRad(70));
+        glMatrix.mat4.rotateZ(A_object5.MOVEMATRIX,A_object5.MOVEMATRIX,LIBS.degToRad(130));
+        glMatrix.mat4.rotateY(A_object5.MOVEMATRIX,A_object5.MOVEMATRIX,LIBS.degToRad(30));
+
+        // MATA KANAN
+        glMatrix.mat4.rotateX(A_object6.MOVEMATRIX,A_object6.MOVEMATRIX,LIBS.degToRad(70));
+        glMatrix.mat4.rotateZ(A_object6.MOVEMATRIX,A_object6.MOVEMATRIX,LIBS.degToRad(-130));
+        glMatrix.mat4.rotateY(A_object6.MOVEMATRIX,A_object6.MOVEMATRIX,LIBS.degToRad(-30));
+
+        // KUPING KANAN
+        glMatrix.mat4.rotateX(A_object7.MOVEMATRIX,A_object7.MOVEMATRIX,LIBS.degToRad(80));
+        glMatrix.mat4.rotateY(A_object7.MOVEMATRIX,A_object7.MOVEMATRIX,LIBS.degToRad(-40));
+        glMatrix.mat4.rotateZ(A_object7.MOVEMATRIX,A_object7.MOVEMATRIX,LIBS.degToRad(50));
+
+        // LEHER
+        glMatrix.mat4.rotateX(A_object10.MOVEMATRIX,A_object10.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateY(A_object10.MOVEMATRIX,A_object10.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateZ(A_object10.MOVEMATRIX,A_object10.MOVEMATRIX,LIBS.degToRad(90));
+
+        // TANGAN KIRI
+        glMatrix.mat4.rotateX(A_object12.MOVEMATRIX,A_object12.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateZ(A_object12.MOVEMATRIX,A_object12.MOVEMATRIX,LIBS.degToRad(40));
+        glMatrix.mat4.rotateY(A_object12.MOVEMATRIX,A_object12.MOVEMATRIX,LIBS.degToRad(0));
+
+        // TANGAN KANAN
+        glMatrix.mat4.rotateX(A_object13.MOVEMATRIX,A_object13.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateZ(A_object13.MOVEMATRIX,A_object13.MOVEMATRIX,LIBS.degToRad(40));
+        glMatrix.mat4.rotateY(A_object13.MOVEMATRIX,A_object13.MOVEMATRIX,LIBS.degToRad(0));
+        
+        // KAKI KIRI
+        glMatrix.mat4.rotateX(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,LIBS.degToRad(60));
+        glMatrix.mat4.rotateZ(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateY(A_object14.MOVEMATRIX,A_object14.MOVEMATRIX,LIBS.degToRad(0));
+
+        // KAKI KANAN
+        glMatrix.mat4.rotateX(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateZ(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,LIBS.degToRad(0));
+        glMatrix.mat4.rotateY(A_object15.MOVEMATRIX,A_object15.MOVEMATRIX,LIBS.degToRad(0));
 
         time_prev = time;
 
@@ -3107,7 +3145,7 @@ function main(){
 
         A_object1.draw();
 
-	R_object1.setUniform4(PROJMATRIX,VIEWMATRIX);
+	    R_object1.setUniform4(PROJMATRIX,VIEWMATRIX);
         R_object1.child[0].setUniform4(PROJMATRIX,VIEWMATRIX);
         R_object1.child[1].setUniform4(PROJMATRIX,VIEWMATRIX);
         R_object1.child[2].setUniform4(PROJMATRIX,VIEWMATRIX);
