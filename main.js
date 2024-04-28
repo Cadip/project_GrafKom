@@ -2687,43 +2687,43 @@ function main(){
 
         object1.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object1.MOVEMATRIX,object1.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(object1.MOVEMATRIX,object1.MOVEMATRIX,[-5.0,12.0,0.0])
+        glMatrix.mat4.translate(object1.MOVEMATRIX,object1.MOVEMATRIX,[-7.0,12.0,0.0])
 
         object2.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object2.MOVEMATRIX,object2.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(object2.MOVEMATRIX,object2.MOVEMATRIX,[-3.5,12.0,0.0])
+        glMatrix.mat4.translate(object2.MOVEMATRIX,object2.MOVEMATRIX,[-5.5,12.0,0.0])
 
         object3.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object3.MOVEMATRIX,object3.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(object3.MOVEMATRIX,object3.MOVEMATRIX,[-2.0,12.0,0.0])
+        glMatrix.mat4.translate(object3.MOVEMATRIX,object3.MOVEMATRIX,[-4.0,12.0,0.0])
 
         object4.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object4.MOVEMATRIX,object4.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(object4.MOVEMATRIX,object4.MOVEMATRIX,[-4.0,13.0,0.0])
+        glMatrix.mat4.translate(object4.MOVEMATRIX,object4.MOVEMATRIX,[-6.0,13.0,0.0])
 
         object5.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object5.MOVEMATRIX,object5.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(object5.MOVEMATRIX,object5.MOVEMATRIX,[-2.5,13.0,0.0])
+        glMatrix.mat4.translate(object5.MOVEMATRIX,object5.MOVEMATRIX,[-4.5,13.0,0.0])
 
         object6.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object6.MOVEMATRIX,object6.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(object6.MOVEMATRIX,object6.MOVEMATRIX,[5.0,11.0,0.0])
+        glMatrix.mat4.translate(object6.MOVEMATRIX,object6.MOVEMATRIX,[7.0,11.0,0.0])
 
         object7.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object7.MOVEMATRIX,object7.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(object7.MOVEMATRIX,object7.MOVEMATRIX,[3.5,11.0,0.0])
+        glMatrix.mat4.translate(object7.MOVEMATRIX,object7.MOVEMATRIX,[5.5,11.0,0.0])
 
         object8.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object8.MOVEMATRIX,object8.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(object8.MOVEMATRIX,object8.MOVEMATRIX,[2.0,11.0,0.0])
+        glMatrix.mat4.translate(object8.MOVEMATRIX,object8.MOVEMATRIX,[4.0,11.0,0.0])
 
         object9.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object9.MOVEMATRIX,object9.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(object9.MOVEMATRIX,object9.MOVEMATRIX,[4.0,12.0,0.0])
+        glMatrix.mat4.translate(object9.MOVEMATRIX,object9.MOVEMATRIX,[6.0,12.0,0.0])
 
         object10.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object10.MOVEMATRIX,object10.MOVEMATRIX,LIBS.degToRad(time * 0.05));
-        glMatrix.mat4.translate(object10.MOVEMATRIX,object10.MOVEMATRIX,[2.5,12.0,0.0])
+        glMatrix.mat4.translate(object10.MOVEMATRIX,object10.MOVEMATRIX,[4.5,12.0,0.0])
 
         object11.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(object11.MOVEMATRIX,object11.MOVEMATRIX,LIBS.degToRad(time * 0.05));
