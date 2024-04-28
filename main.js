@@ -126,8 +126,9 @@ function main(){
 
     var walk = true;
     var walk1 = true;
+    var walk2 = true;
     var speed = 0.03;
-    var speed1 = 0.009;
+    var speed1 = 0.005;
     var Zpostion = [0,2,1.1,0.1,0.1,0.1,0.1,0.7,0.7,0,0,0,0,0.3,0.3,0.95];
     var Xpostion = [8,8,8,6,7.6,8,10,8.4,8,8,6.6,9.4,7.7,8.85,8];
 
@@ -2956,49 +2957,49 @@ function main(){
         }
 
 
-        if (walk == true) {
-            glMatrix.mat4.translate(R_object1.MOVEMATRIX,R_object1.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object2.MOVEMATRIX,R_object2.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object3.MOVEMATRIX,R_object3.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object4.MOVEMATRIX,R_object4.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object7.MOVEMATRIX,R_object7.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object8.MOVEMATRIX,R_object8.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object9.MOVEMATRIX,R_object9.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object10.MOVEMATRIX,R_object10.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object11.MOVEMATRIX,R_object11.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object12.MOVEMATRIX,R_object12.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object13.MOVEMATRIX,R_object13.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object14.MOVEMATRIX,R_object14.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
-            glMatrix.mat4.translate(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,[0.0,(Yposition[0]+=speed),0.0]);
+        if (walk2 == true) {
+            glMatrix.mat4.translate(R_object1.MOVEMATRIX,R_object1.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object2.MOVEMATRIX,R_object2.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object3.MOVEMATRIX,R_object3.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object4.MOVEMATRIX,R_object4.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object7.MOVEMATRIX,R_object7.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object8.MOVEMATRIX,R_object8.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object9.MOVEMATRIX,R_object9.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object10.MOVEMATRIX,R_object10.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object11.MOVEMATRIX,R_object11.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object12.MOVEMATRIX,R_object12.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object13.MOVEMATRIX,R_object13.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object14.MOVEMATRIX,R_object14.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
+            glMatrix.mat4.translate(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
             
             
         
             if (Yposition[0] >= 4) {
-                walk = false;
+                walk2 = false;
             }   
         }else{
-            glMatrix.mat4.translate(R_object1.MOVEMATRIX,R_object1.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object2.MOVEMATRIX,R_object2.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object3.MOVEMATRIX,R_object3.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object4.MOVEMATRIX,R_object4.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object7.MOVEMATRIX,R_object7.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object8.MOVEMATRIX,R_object8.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object9.MOVEMATRIX,R_object9.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object10.MOVEMATRIX,R_object10.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object11.MOVEMATRIX,R_object11.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object12.MOVEMATRIX,R_object12.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object13.MOVEMATRIX,R_object13.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object14.MOVEMATRIX,R_object14.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
-            glMatrix.mat4.translate(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,[0.0,(Yposition[0]-=speed),0.0]);
+            glMatrix.mat4.translate(R_object1.MOVEMATRIX,R_object1.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object2.MOVEMATRIX,R_object2.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object3.MOVEMATRIX,R_object3.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object4.MOVEMATRIX,R_object4.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object7.MOVEMATRIX,R_object7.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object8.MOVEMATRIX,R_object8.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object9.MOVEMATRIX,R_object9.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object10.MOVEMATRIX,R_object10.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object11.MOVEMATRIX,R_object11.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object12.MOVEMATRIX,R_object12.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object13.MOVEMATRIX,R_object13.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object14.MOVEMATRIX,R_object14.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
+            glMatrix.mat4.translate(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
             
             
         
             if (Yposition[0] <= -1) {
-                walk = true;
+                walk2 = true;
             }
         }
         
