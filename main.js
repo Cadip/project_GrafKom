@@ -471,7 +471,7 @@ function main(){
     //kalung
     var sectorCount5 = 100;
     var stackCount5 = 100;
-    var radius5 = 1.5;
+    var radius5 = 1.44;
 
     var a5, b5, c5, xy5;
     var sectorStep5 = 2 * Math.PI / sectorCount5;
@@ -2300,21 +2300,21 @@ function main(){
     A_object1.addChild(A_object16);
 
     // OBJECT
-    var R_object1 = new myObject(R_vertices1, R_faces1, shader_vertex_source, shader_fragment_source);//1
-    var R_object2 = new myObject(R_vertices2, R_faces2, shader_vertex_source, shader_fragment_source);//2
-    var R_object3 = new myObject(R_vertices4, R_faces4, shader_vertex_source, shader_fragment_source);//3
-    var R_object4 = new myObject(R_vertices5, R_faces5, shader_vertex_source, shader_fragment_source);//4
-    var R_object5 = new myObject(R_vertices5, R_faces5, shader_vertex_source, shader_fragment_source);//5
-    var R_object6 = new myObject(R_verticestelinga2, facestelinga2, shader_vertex_source, shader_fragment_source);//6
-    var R_object7 = new myObject(R_verticesMata1, R_facesMata1, shader_vertex_source, shader_fragment_source);//7
-    var R_object8 = new myObject(R_verticesMata1, R_facesMata1, shader_vertex_source, shader_fragment_source);//8
-    var R_object9 = new myObject(R_verticesBadan, R_facesBadan, shader_vertex_source, shader_fragment_source);//9
-    var R_object10 = new myObject(R_verticesKalung, facesKalung, shader_vertex_source, shader_fragment_source);//10
-    var R_object11 = new myObject(R_vertices9, R_faces9, shader_vertex_source, shader_fragment_source);//11
-    var R_object12 = new myObject(R_vertices9, R_faces9, shader_vertex_source, shader_fragment_source);//12
-    var R_object13 = new myObject(R_vertices10, R_faces10, shader_vertex_source, shader_fragment_source);//13
-    var R_object14 = new myObject(R_vertices10, R_faces10, shader_vertex_source, shader_fragment_source);//14
-    var R_object15 = new myObject(R_vertices11 , R_faces11, shader_vertex_source, shader_fragment_source);//15
+    var R_object1 = new myObject(R_vertices1, R_faces1, shader_vertex_source, shader_fragment_source);//1 kepala
+    var R_object2 = new myObject(R_vertices2, R_faces2, shader_vertex_source, shader_fragment_source);//2 hidung
+    var R_object3 = new myObject(R_vertices4, R_faces4, shader_vertex_source, shader_fragment_source);//3 mulut bagian kiri
+    var R_object4 = new myObject(R_vertices5, R_faces5, shader_vertex_source, shader_fragment_source);//4 mulut bagian kanan
+    var R_object5 = new myObject(R_vertices5, R_faces5, shader_vertex_source, shader_fragment_source);//5 telinga kiri
+    var R_object6 = new myObject(R_verticestelinga2, facestelinga2, shader_vertex_source, shader_fragment_source);//6 telinga kanan
+    var R_object7 = new myObject(R_verticesMata1, R_facesMata1, shader_vertex_source, shader_fragment_source);//7 mata kiri
+    var R_object8 = new myObject(R_verticesMata1, R_facesMata1, shader_vertex_source, shader_fragment_source);//8 mata kanan
+    var R_object9 = new myObject(R_verticesBadan, R_facesBadan, shader_vertex_source, shader_fragment_source);//9 badan
+    var R_object10 = new myObject(R_verticesKalung, facesKalung, shader_vertex_source, shader_fragment_source);//10 kalung
+    var R_object11 = new myObject(R_vertices9, R_faces9, shader_vertex_source, shader_fragment_source);//11 tangan kiri
+    var R_object12 = new myObject(R_vertices9, R_faces9, shader_vertex_source, shader_fragment_source);//12 tangan kanan
+    var R_object13 = new myObject(R_vertices10, R_faces10, shader_vertex_source, shader_fragment_source);//13 kaki kiri
+    var R_object14 = new myObject(R_vertices10, R_faces10, shader_vertex_source, shader_fragment_source);//14 kaki kanan
+    var R_object15 = new myObject(R_vertices11 , R_faces11, shader_vertex_source, shader_fragment_source);//15 kerucut/ekornya
 
     R_object1.addChild(R_object2);
     R_object1.addChild(R_object3);
