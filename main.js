@@ -120,14 +120,14 @@ function main(){
     CANVAS.height = window.innerHeight;
     
     /*========================= CAPTURE MOUSE EVENTS ========================= */
-    var AMORTIZATION = 0.95;
+    var AMORTIZATION = 0.0001;
 
     var walk = true;
     var walk1 = true;
     var walk2 = true;
     var speed = 0.03;
     var speed1 = 0.005;
-    var Zpostion = [0,2,1.1,0.1,0.1,0.1,0.1,0.7,0.7,0,0,0,0,0.3,0.3,0.95];
+    var Zpostion = [0,0,-0.2,0.1,0.0,0.1,0.1,0.0,0.0,0,0,0,0,0.3,0.3,0];
     var Xpostion = [8,8,8,6,7.6,8,10,8.4,8,8,6.6,9.4,7.7,8.85,8];
 
     var Yposition =[0 , 0.2 , -0.2, -0.2 , 2 , 2, 0.8 , 0.8 , -3, -0.9 , -2.2 , -2.2 , -4, -4, -4]; 
