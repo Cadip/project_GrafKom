@@ -3000,6 +3000,9 @@ function main(){
             glMatrix.mat4.translate(R_object14.MOVEMATRIX,R_object14.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
             glMatrix.mat4.translate(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
             
+            glMatrix.mat4.rotateY(R_object11.MOVEMATRIX,R_object11.MOVEMATRIX,LIBS.degToRad(time * 0.5));
+            glMatrix.mat4.rotateY(R_object12.MOVEMATRIX,R_object12.MOVEMATRIX,LIBS.degToRad(time * 0.5));
+            
             if (Yposition[0] >= 4) {
                 walk2 = false;
             }   
@@ -3020,8 +3023,12 @@ function main(){
             glMatrix.mat4.translate(R_object14.MOVEMATRIX,R_object14.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
             glMatrix.mat4.translate(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
         
+            glMatrix.mat4.rotateY(R_object11.MOVEMATRIX,R_object11.MOVEMATRIX,LIBS.degToRad(time * 0.5));
+            glMatrix.mat4.rotateY(R_object12.MOVEMATRIX,R_object12.MOVEMATRIX,LIBS.degToRad(time * 0.5));
+
             if (Yposition[0] <= -1) {
                 walk2 = true;
+                
             }
         }
 
