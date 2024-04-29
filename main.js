@@ -2381,9 +2381,7 @@ function main(){
 
     //tanah
     var objectkotak = new myObject(object_vertex,object_faces,shader_vertex_source,shader_fragment_source);
-
     //rumah
-
     var objectrumah = new myObject(object_vertex2,object_faces2,shader_vertex_source,shader_fragment_source);
     //atap
     var objectatap = new myObject(object_vertex3,object_faces3,shader_vertex_source,shader_fragment_source);
@@ -2468,7 +2466,6 @@ function main(){
             time_prev = time;
         }
 
-        var p = 0.05;
         R_object1.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(R_object1.MOVEMATRIX,R_object1.MOVEMATRIX,LIBS.degToRad(time * p));
 
@@ -2506,22 +2503,17 @@ function main(){
         // glMatrix.mat4.rotateY(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,LIBS.degToRad(time * p));
         glMatrix.mat4.translate(R_object4.MOVEMATRIX,R_object4.MOVEMATRIX,[-0.1+q,-0.2,0.7])
         
-
         R_object5.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(R_object6.MOVEMATRIX,R_object6.MOVEMATRIX,LIBS.degToRad(time * p));
         glMatrix.mat4.translate(R_object5.MOVEMATRIX,R_object5.MOVEMATRIX,[0.1+q,-0.2,0.7])
-        
         
         R_object11.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(R_objectTangan1.MOVEMATRIX,R_objectTangan1.MOVEMATRIX,LIBS.degToRad(time * p));
         glMatrix.mat4.translate(R_object11.MOVEMATRIX,R_object11.MOVEMATRIX,[-1.6+q,-2.2,0.0])
        
-
         R_object12.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(R_objectTangan2.MOVEMATRIX,R_objectTangan2.MOVEMATRIX,LIBS.degToRad(time * p));
         glMatrix.mat4.translate(R_object12.MOVEMATRIX,R_object12.MOVEMATRIX,[1.6+q,-2.2,0.0])
-        
-
         
         R_object13.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(R_objectKaki1.MOVEMATRIX,R_objectKaki1.MOVEMATRIX,LIBS.degToRad(time * p));
@@ -2620,7 +2612,6 @@ function main(){
         Z_object15.MOVEMATRIX = glMatrix.mat4.create();
         // glMatrix.mat4.rotateY(Z_object15.MOVEMATRIX,Z_object15.MOVEMATRIX,LIBS.degToRad(time * 0.05));
         glMatrix.mat4.translate(Z_object15.MOVEMATRIX,Z_object15.MOVEMATRIX,[8.0,2.5,0.0])
-
 
         // KEPALA
         A_object1.MOVEMATRIX = glMatrix.mat4.create();
@@ -2937,7 +2928,6 @@ function main(){
 
           // ANIMASI
           if (walk1 == true) {
-
             glMatrix.mat4.translate(Z_object1.MOVEMATRIX,Z_object1.MOVEMATRIX,[(Xpostion[0]+=speed1),0.0,0.0])
             glMatrix.mat4.translate(Z_object2.MOVEMATRIX,Z_object2.MOVEMATRIX,[(Xpostion[0]+=speed1),0.0,0.0])
             glMatrix.mat4.translate(Z_object3.MOVEMATRIX,Z_object3.MOVEMATRIX,[(Xpostion[0]+=speed1),0.0,0.0])
@@ -2993,7 +2983,6 @@ function main(){
              }   
         }
 
-
         if (walk2 == true) {
             glMatrix.mat4.translate(R_object1.MOVEMATRIX,R_object1.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
             glMatrix.mat4.translate(R_object2.MOVEMATRIX,R_object2.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
@@ -3011,8 +3000,6 @@ function main(){
             glMatrix.mat4.translate(R_object14.MOVEMATRIX,R_object14.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
             glMatrix.mat4.translate(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,[0.0,(Yposition[0]+=speed1),0.0]);
             
-            
-        
             if (Yposition[0] >= 4) {
                 walk2 = false;
             }   
@@ -3032,14 +3019,11 @@ function main(){
             glMatrix.mat4.translate(R_object13.MOVEMATRIX,R_object13.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
             glMatrix.mat4.translate(R_object14.MOVEMATRIX,R_object14.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
             glMatrix.mat4.translate(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,[0.0,(Yposition[0]-=speed1),0.0]);
-            
-            
         
             if (Yposition[0] <= -1) {
                 walk2 = true;
             }
         }
-        
 
         if(putar == true){
             if (Xmatahari[0] <= 0) {
@@ -3056,7 +3040,6 @@ function main(){
             
             putar = true; 
         }        
-
 
         //rorate R_
 
@@ -3080,7 +3063,6 @@ function main(){
         glMatrix.mat4.rotateZ(R_object11.MOVEMATRIX,R_object11.MOVEMATRIX,LIBS.degToRad(40));
         glMatrix.mat4.rotateY(R_object11.MOVEMATRIX,R_object11.MOVEMATRIX,LIBS.degToRad(0));
 
-
         glMatrix.mat4.rotateX(R_object12.MOVEMATRIX,R_object12.MOVEMATRIX,LIBS.degToRad(150));
         glMatrix.mat4.rotateZ(R_object12.MOVEMATRIX,R_object12.MOVEMATRIX,LIBS.degToRad(-40));
         glMatrix.mat4.rotateY(R_object12.MOVEMATRIX,R_object12.MOVEMATRIX,LIBS.degToRad(0));
@@ -3095,13 +3077,7 @@ function main(){
 
         glMatrix.mat4.rotateX(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,LIBS.degToRad(120));
         glMatrix.mat4.rotateZ(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,LIBS.degToRad(0));
-        glMatrix.mat4.rotateY(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,LIBS.degToRad(0));
-
-
-
-
-
-        
+        glMatrix.mat4.rotateY(R_object15.MOVEMATRIX,R_object15.MOVEMATRIX,LIBS.degToRad(0)); 
 
         //kuping kiri
         glMatrix.mat4.rotateX(Z_object4.MOVEMATRIX,Z_object4.MOVEMATRIX,LIBS.degToRad(90));
