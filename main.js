@@ -121,8 +121,6 @@ function main(){
     
     /*========================= CAPTURE MOUSE EVENTS ========================= */
     var AMORTIZATION = 0.95;
-    var dX = 0, dY = 0;
-    var drag = false;
 
     var walk = true;
     var walk1 = true;
@@ -135,6 +133,10 @@ function main(){
     var Yposition =[0 , 0.2 , -0.2, -0.2 , 2 , 2, 0.8 , 0.8 , -3, -0.9 , -2.2 , -2.2 , -4, -4, -4]; 
 
     var x_prev, y_prev;
+    var drag = false;
+    var THETA = 0, PHI = 0;
+    // buat ksh perlambatan
+    var dX =0, dY=0;
 
     var mouseDown = function(e) {
       drag = true;
@@ -157,6 +159,31 @@ function main(){
       x_prev = e.pageX, y_prev = e.pageY;
       e.preventDefault();
     };
+
+    var keyboardDown = function(e) {
+        if (e.key == "w" || e.key == "W") {
+            dY = -2 * Math.PI / CANVAS.height;
+            PHI += dY;
+            e.preventDefault();
+        }
+        if (e.key == "s" || e.key == "S") {
+            dY = 2 * Math.PI / CANVAS.height;
+            PHI += dY;
+            e.preventDefault();
+        }
+        if (e.key == "a" || e.key == "A") {
+            dX = -2 * Math.PI / CANVAS.width;
+            THETA += dX;
+            e.preventDefault();
+        }
+        if (e.key == "d" || e.key == "D") {
+            dX = 2 * Math.PI / CANVAS.width;
+            THETA += dX;
+            e.preventDefault();
+        }
+    }
+
+    window.addEventListener("keydown",keyboardDown,false);
 
     CANVAS.addEventListener("mousedown", mouseDown, false);
     CANVAS.addEventListener("mouseup", mouseUp, false);
@@ -2425,10 +2452,20 @@ function main(){
     var Xmatahari = [0,15];
 
     var animate = function(time) {
-        var dt = (time-time_prev);
-        if (!drag) {
-          dX *= AMORTIZATION, dY *= AMORTIZATION;
-          THETA += dX, PHI += dY;
+        if(time > 0) {
+            //delta time adalah waktu yang dibutuhkan untuk pindah 1 frame ke frame lain
+            var dt = (time - time_prev);
+            // ketika mouse dilepas tp melambat jd gerak dikit
+            if(!drag){
+                dX *= AMORTIZATION;
+                dY *= AMORTIZATION;
+                THETA+= dX;
+                PHI+=dY;
+            }
+            glMatrix.mat4.rotateX(VIEWMATRIX, VIEWMATRIX, PHI);
+            glMatrix.mat4.rotateY(VIEWMATRIX, VIEWMATRIX, THETA);
+            //console.log(dt); --> untuk menampilkan waktunya di console lewat inspect
+            time_prev = time;
         }
 
         var p = 0.05;
